@@ -1,5 +1,5 @@
 import { useGSAP } from '@gsap/react';
-import clipImg from '/images/image-5.webp';
+import clipImg from '/images/image-6.webp';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import AboutUsTextBanner from '../../Component/TextBanner/AboutUsTextBanner';
