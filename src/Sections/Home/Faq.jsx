@@ -65,7 +65,7 @@ const Faq = () => {
 
                             <div className="collapse  px-4">
                                 <hr />
-                                <p className="text-lg font-sirin">{data.ans}</p>
+                                <p className="text-lg font-sirin pt-6 pb-16">{data.ans}</p>
                             </div>
                         </div>
                     ))

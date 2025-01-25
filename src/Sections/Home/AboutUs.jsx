@@ -31,7 +31,7 @@ const AboutUs = () => {
     });
 
     return (
-        <div id="about" className=" min-h-screen w-screen">
+        <div id="about" className=" min-h-screen w-screen  ">
 
 
             {/* this is the text of this section */}

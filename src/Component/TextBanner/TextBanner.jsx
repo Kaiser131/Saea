@@ -23,7 +23,7 @@ const TextBanner = ({ heading = '', subHeading = '' }) => {
                     initial="hidden"
                     whileInView="reveal"
                     transition={{ staggerChildren: 0.1 }}
-                    className="text-8xl font-raleway font-bold leading-[0.8]"
+                    className="text-4xl font-raleway pb-4"
                 >{headingChars.map((char, idx) => (
                     <motion.span key={idx} transition={{ duration: 0.5 }} variants={charVariants}>
                         {char}
@@ -34,7 +34,7 @@ const TextBanner = ({ heading = '', subHeading = '' }) => {
                     initial="hidden"
                     whileInView="reveal"
                     transition={{ staggerChildren: 0.015 }}
-                    className="text-xl mt-10 font-merriway "
+                    className="font-sirin text-white text-shadow font-medium "
                 >
                     {subHeadingChars.map((char, idx) => (
                         <motion.span key={idx} transition={{ duration: .35 }} variants={charVariants}>

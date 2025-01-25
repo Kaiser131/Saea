@@ -13,7 +13,7 @@ const AboutUsTextBanner = ({ heading, subHeading, lowerHeading }) => {
     };
 
     return (
-        < div className="relative mb-24 mt-36 flex flex-col items-center gap-5">
+        < div className="relative mb-24 pt-10 flex flex-col items-center gap-5">
 
             <motion.h2
                 initial="hidden"

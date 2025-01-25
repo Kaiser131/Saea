@@ -13,9 +13,9 @@ const TopPics = () => {
     const category = params.get('category');
 
     const { data = [] } = useQuery({
-        queryKey: ['watchCategory'],
+        queryKey: ['watchCategory', category],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/watch?category=${category} `);
+            const { data } = await axios.get(`http://localhost:5000/watchs?category=${category}`);
             return data;
         }
     });
@@ -24,7 +24,7 @@ const TopPics = () => {
     return (
         <div className="min-h-screen min-w-full text-white ">
 
-            <div className="m-40">
+            <div className="p-40">
 
                 {/* text div */}
                 <div>

@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 const Tab = ({ children, setPosition }) => {
     const ref = useRef(null);
     const navigate = useNavigate();
+
+
     const handleClick = () => {
+
+
         let currentQuery = { category: children };
         const url = queryString.stringifyUrl({
             url: '/',
