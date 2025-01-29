@@ -11,6 +11,7 @@ export default {
         sirin: ["Sirin Stencil", "serif"],
         raleway: ["Raleway", "serif"],
         merriway: ["Merriweather", "serif"],
+        lexend: ["Lexend Giga", "serif"],
       },
     },
   },

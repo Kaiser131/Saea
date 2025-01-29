@@ -34,7 +34,7 @@ const Tab = ({ children, setPosition }) => {
             }}
             className='relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-base '
         >
-            <button onClick={handleClick}> {children}</button>
+            <button className="px-4 " onClick={handleClick}> {children}</button>
         </li>
     );
 };

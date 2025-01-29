@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { IoSearchSharp } from "react-icons/io5";
 
 
 const CYCLES_PER_LETTER = 2;
@@ -8,7 +7,7 @@ const SHUFFLE_TIME = 50;
 
 const CHARS = "!@#$%^&*():{};|,.<>/?";
 
-const EncryptButton = ({ name }) => {
+const EncryptButton = ({ name, logo }) => {
 
     const intervalRef = useRef(null);
 
@@ -56,10 +55,10 @@ const EncryptButton = ({ name }) => {
             }}
             onMouseEnter={scramble}
             onMouseLeave={stopScramble}
-            className="group relative overflow-hidden rounded-lg border-[1px] border-neutral-500 bg-neutral-700 px-4 py-2 font-mono font-medium uppercase text-neutral-300 transition-colors hover:text-white"
+            className="group relative overflow-hidden rounded border-[1px] border-neutral-500 bg-neutral-700 px-4 py-2 font-mono font-medium uppercase text-neutral-300 transition-colors hover:text-white"
         >
             <div className="relative z-10 flex items-center gap-2">
-                <IoSearchSharp />
+                {logo}
                 <span>{text}</span>
             </div>
             <motion.span

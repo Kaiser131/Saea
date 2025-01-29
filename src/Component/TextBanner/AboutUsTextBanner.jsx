@@ -19,7 +19,7 @@ const AboutUsTextBanner = ({ heading, subHeading, lowerHeading }) => {
                 initial="hidden"
                 whileInView="reveal"
                 transition={{ staggerChildren: 0.1 }}
-                className="font-raleway mt-5 text-6xl  uppercase text-center">
+                className="font-lexend mt-5 text-4xl  uppercase text-center">
 
                 {headingChars.map((char, idx) => (
                     <motion.span key={idx} transition={{ duration: 0.5 }} variants={charVariants}>

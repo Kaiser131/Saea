@@ -2,10 +2,9 @@ import { Link, useSearchParams } from "react-router-dom";
 import SlideTabs from "../../Component/Home/TopPicsTab/SlideTabs";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { FaArrowRight } from "react-icons/fa";
 import Card from "../../Component/Home/TopPicsTab/Card";
-import SpotlightButton from "../../Component/Shared/HoverBtn";
 import EncryptButton from "../../Component/Shared/EncryptBtn";
+import { IoSearchSharp } from "react-icons/io5";
 
 const TopPics = () => {
 
@@ -44,13 +43,13 @@ const TopPics = () => {
 
                 {/* card section */}
                 <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10 max-w-[1300px] mx-auto">
-                    {data.slice(0, 4).map(got => <Card key={got._id} category={got.category} price={got.price} name={got.name} availability={got.availability} image={got.image} ></Card>)}
+                    {data.slice(0, 4).map(data => <Card key={data._id} topPicData={data} ></Card>)}
                 </div>
 
                 {/* button */}
                 <div className="flex justify-center mt-10">
                     <Link to='/products'>
-                        <EncryptButton name="see more"></EncryptButton>
+                        <EncryptButton logo={<IoSearchSharp />} name="see more"></EncryptButton>
                     </Link>
                 </div>
 

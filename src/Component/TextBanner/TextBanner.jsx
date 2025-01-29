@@ -23,7 +23,7 @@ const TextBanner = ({ heading = '', subHeading = '' }) => {
                     initial="hidden"
                     whileInView="reveal"
                     transition={{ staggerChildren: 0.1 }}
-                    className="text-4xl font-raleway pb-4"
+                    className="text-4xl font-lexend pb-4"
                 >{headingChars.map((char, idx) => (
                     <motion.span key={idx} transition={{ duration: 0.5 }} variants={charVariants}>
                         {char}
