@@ -8,8 +8,8 @@ const NavBar = () => {
 
     const navContainerRef = useRef(null);
     const navItems = [
-        { name: 'Nexus', destination: '/contact' },
-        { name: 'vaults', destination: '/contact' },
+        { name: 'Home', destination: '/' },
+        { name: 'Products', destination: '/products' },
         { name: 'prologue', destination: '/contact' },
         { name: 'about', destination: '/contact' },
         { name: 'Contact', destination: '/contact' },

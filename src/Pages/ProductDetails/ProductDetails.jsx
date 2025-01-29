@@ -39,7 +39,7 @@ const ProductDetails = () => {
 
                     {/* color div */}
                     <div className="space-y-3">
-                        <p className="uppercase font-lexend text-xl">color:</p>
+                        <p className="uppercase font-lexend text-xl">varients:</p>
                         <div className="w-20 h-20 bg-cover p-3 hover:border bg-center rounded-sm shadow-md"
                             style={{ backgroundImage: `url(${image})` }}>
                         </div>
@@ -52,7 +52,7 @@ const ProductDetails = () => {
                             <li className="list-disc"><span className="font-semibold ">category:</span> {category}</li>
                             <li className="list-disc"><span className="font-semibold ">material:</span> {material}</li>
                             <li className="list-disc"><span className="font-semibold ">durability:</span> {waterResistance}</li>
-                            <li className="list-disc"><span className="font-semibold ">warranty/</span>guarantee: {warranty}</li>
+                            <li className="list-disc"><span className="font-semibold ">warranty:</span> {warranty}</li>
                             <li className="list-disc"><span className="font-semibold ">sku:</span> {SKU}</li>
                             <li className="list-disc"><span className="font-semibold ">available:</span> {availability}</li>
                         </ul>
