@@ -1,16 +1,20 @@
-import {
-    FiEdit,
-    FiChevronDown,
-    FiTrash,
-    FiShare,
-    FiPlusSquare,
-} from "react-icons/fi";
+import { FiChevronDown, } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Option from "./Option";
 
-const DropDown = ({ dropBtnText }) => {
+const FilterDropdown = ({ dropBtnText, setDropdownData, dropDownOptionsData, setCurrentPage, }) => {
+
     const [open, setOpen] = useState(false);
+
+    const handleDropDownOptionData = (text) => {
+        setCurrentPage(1);
+        setDropdownData(text);
+        setOpen(false);
+    };
+
+
+
 
     const wrapperVariants = {
         open: {
@@ -53,12 +57,15 @@ const DropDown = ({ dropBtnText }) => {
                     initial={wrapperVariants.closed}
                     variants={wrapperVariants}
                     style={{ originY: "top", translateX: "-50%" }}
-                    className="flex flex-col gap-2 p-2 rounded-lg shadow-2xl absolute top-[120%] left-[70%] w-48 overflow-hidden"
+                    className="flex flex-col gap-2 p-2 rounded-lg shadow-2xl absolute top-[120%] left-[70%] w-48  overflow-hidden"
                 >
-                    <Option setOpen={setOpen} Icon={FiEdit} text="Edit" />
-                    <Option setOpen={setOpen} Icon={FiPlusSquare} text="Duplicate" />
-                    <Option setOpen={setOpen} Icon={FiShare} text="Share" />
-                    <Option setOpen={setOpen} Icon={FiTrash} text="Remove" />
+
+                    {
+                        dropDownOptionsData?.map((got, idx) => (
+                            <Option key={idx} handleDropDownOptionData={handleDropDownOptionData} setOpen={setOpen} Icon={got.icon} text={got.name} ></Option>
+                        ))
+                    }
+
                 </motion.ul>
             </motion.div>
         </div>
@@ -67,7 +74,7 @@ const DropDown = ({ dropBtnText }) => {
 
 
 
-export default DropDown;
+export default FilterDropdown;
 
 
 

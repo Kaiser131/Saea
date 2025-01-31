@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 
-const Option = ({ text, Icon, setOpen }) => {
+const Option = ({ text, Icon, setOpen, handleDropDownOptionData }) => {
 
     const itemVariants = {
         open: {
@@ -30,10 +30,12 @@ const Option = ({ text, Icon, setOpen }) => {
 
 
 
+
+
     return (
         <motion.li
             variants={itemVariants}
-            onClick={() => setOpen(false)}
+            onClick={() => handleDropDownOptionData(text)}
             className="flex items-center gap-2 w-full p-2 text-xs font-medium whitespace-nowrap rounded-md hover:bg-[#BEBEBE] text-slate-700 transition-colors cursor-pointer"
         >
             <motion.span variants={actionIconVariants}>

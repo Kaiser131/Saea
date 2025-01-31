@@ -2,35 +2,69 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import ProductCard from "../../Component/AllProduct/ProductCard";
 import { IoSearchSharp } from "react-icons/io5";
-import DropDown from "../../Component/Shared/DropDown/Dropdown";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import { useState } from "react";
+
+// filter icons
+import { IoDiamondOutline } from "react-icons/io5";
+import { BsSmartwatch } from "react-icons/bs";
+import { MdSportsFootball } from "react-icons/md";
+import { TbPeace } from "react-icons/tb";
+import { MdAllInclusive } from "react-icons/md";
+
+
+// sortBy icons
+import { MdOutlineTurnSharpRight } from "react-icons/md";
+import { MdUTurnLeft } from "react-icons/md";
+import SortByDropdown from "../../Sections/AllProducts/DropDown/SortByDropdown";
+import FilterDropdown from "../../Sections/AllProducts/DropDown/FilterDropdown";
+
 
 const AllProduct = () => {
 
     const [itemsPerPage, setItemsPerPage] = useState(12);
     const [count, setCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
+    const [filterDropdownData, setFilterDropdownData] = useState("");
+    const [sortByDropdownData, setSortByDropdownData] = useState("");
+    const [search, setSearch] = useState("");
+
+    console.log(sortByDropdownData);
+
+
+    // left Filter dropdownData
+    const filterDropdownOptionsData = [
+        { name: 'Luxury', icon: IoDiamondOutline },
+        { name: 'Smartwatches', icon: BsSmartwatch },
+        { name: 'Sports', icon: MdSportsFootball },
+        { name: 'Casual', icon: TbPeace },
+    ];
+
+    // right sortBy dropDownData
+    const sortByDropdownOptionsData = [
+        { name: 'Price, low to high', icon: MdOutlineTurnSharpRight },
+        { name: 'Price,high to low', icon: MdUTurnLeft },
+    ];
 
 
     const { data = [] } = useQuery({
-        queryKey: ['allProducts', currentPage, itemsPerPage],
+        queryKey: ['allProducts', currentPage, itemsPerPage, filterDropdownData, sortByDropdownData, search],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/all-product?page=${currentPage}&size=${itemsPerPage}`);
+            const { data } = await axios.get(`http://localhost:5000/all-product?page=${currentPage}&size=${itemsPerPage}&category=${filterDropdownData}&sort=${sortByDropdownData}&search=${search}`);
             return data;
-        }
+        },
     });
 
+
     const { data: productCount = [] } = useQuery({
-        queryKey: ['productCount'],
+        queryKey: ['productCount', filterDropdownData, search],
         queryFn: async () => {
-            const { data } = await axios.get('http://localhost:5000/product-count');
+            const { data } = await axios.get(`http://localhost:5000/product-count?category=${filterDropdownData}&search=${search}`);
             setCount(data.count);
             return data;
         }
     });
 
-    console.log(currentPage);
 
 
     const totalPages = Math.ceil(count / itemsPerPage);
@@ -39,7 +73,14 @@ const AllProduct = () => {
     // handle pagination button
     const handlePaginationButton = (value) => {
         setCurrentPage(value);
+    };
 
+
+    // search function
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const text = e.target.search.value;
+        setSearch(text);
     };
 
 
@@ -49,9 +90,10 @@ const AllProduct = () => {
                 {/* heading text */}
                 <div className="flex border border-[#BEBEBE] justify-between text-center items-center">
 
-                    {/* right dropdown Filter */}
+                    {/* left filter dropdown  */}
                     <div className="border-x border-[#BEBEBE]">
-                        <DropDown dropBtnText="Filter"></DropDown>
+                        <FilterDropdown setCurrentPage={setCurrentPage} dropDownOptionsData={filterDropdownOptionsData} setDropdownData={setFilterDropdownData} dropBtnText="Filter" setFilterDropdownData={setFilterDropdownData}
+                            setSortByDropdownData={setSortByDropdownData} ></FilterDropdown>
                     </div>
 
                     {/* product length */}
@@ -60,16 +102,17 @@ const AllProduct = () => {
                     {/* search and right dropdown */}
                     <div className="flex">
                         {/* search */}
-                        <div className="flex items-center gap-5 font-light font-lexend py-4 border-x px-5 md:px-10 border-[#BEBEBE] whitespace-nowrap">
-                            <input type="text" placeholder="Search" className="bg-[#D8D8D8] w-40 outline-none" />
+
+                        <form onSubmit={handleSearch} className="flex items-center gap-5 font-light font-lexend py-4 border-x px-5 md:px-10 border-[#BEBEBE] whitespace-nowrap">
+                            <input type="text" placeholder="Search" name="search" className="bg-[#D8D8D8] w-40 outline-none" />
                             <button>
                                 <IoSearchSharp className="text-2xl" />
                             </button>
-                        </div>
+                        </form>
 
                         {/* right dropdown Sort By */}
                         <div>
-                            <DropDown dropBtnText="Post actions"></DropDown>
+                            <SortByDropdown setDropdownData={setSortByDropdownData} dropDownOptionsData={sortByDropdownOptionsData} dropBtnText='Sort By' ></SortByDropdown>
                         </div>
                     </div>
                 </div>
@@ -86,7 +129,7 @@ const AllProduct = () => {
 
                 {/* pagination */}
 
-                <div className="flex m-10 w-20 mx-auto">
+                <div className="flex mt-10 w-20 mx-auto">
 
                     {/* previous */}
                     <button
