@@ -2,6 +2,8 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useWindowScroll } from "react-use";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 
 const NavBar = () => {
@@ -10,9 +12,17 @@ const NavBar = () => {
     const navItems = [
         { name: 'Home', destination: '/' },
         { name: 'Products', destination: '/products' },
-        { name: 'prologue', destination: '/contact' },
-        { name: 'about', destination: '/contact' },
         { name: 'Contact', destination: '/contact' },
+        { name: 'about', destination: '/contact' },
+    ];
+
+
+    const { user, logOut } = useAuth();
+
+
+    const handleLogOut = () => [
+        logOut(),
+        toast.success('Log Out Successfully')
     ];
 
 
@@ -83,6 +93,11 @@ const NavBar = () => {
                                 </Link>
                             ))}
                         </div>
+                        {
+                            user ?
+                                <div onClick={handleLogOut} className="nav-hover-btn">LogOut</div> :
+                                <span className="nav-hover-btn"><Link to='/login'>Login</Link></span>
+                        }
 
                         {/* music buttton */}
                         <button className="ml-10 flex items-center space-x-0.5" onClick={toggleAudio}>

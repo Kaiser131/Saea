@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 
-const Option = ({ text, Icon, setOpen, handleDropDownOptionData }) => {
+const ClearOption = ({ text, Icon, handleCLear, handleDropDownOptionData }) => {
 
     const itemVariants = {
         open: {
@@ -35,8 +35,8 @@ const Option = ({ text, Icon, setOpen, handleDropDownOptionData }) => {
     return (
         <motion.li
             variants={itemVariants}
-            onClick={() => handleDropDownOptionData(text)}
-            className="flex items-center gap-2 w-full p-2 text-xs font-medium whitespace-nowrap rounded-md hover:bg-[#BEBEBE] text-slate-700 transition-colors cursor-pointer z-50"
+            onClick={() => handleCLear()}
+            className="flex items-center gap-2 w-full p-2 text-xs font-medium whitespace-nowrap rounded-md hover:bg-[#BEBEBE] text-slate-700 transition-colors cursor-pointer"
         >
             <motion.span variants={actionIconVariants}>
                 <Icon />
@@ -46,4 +46,4 @@ const Option = ({ text, Icon, setOpen, handleDropDownOptionData }) => {
     );
 };
 
-export default Option;
+export default ClearOption;

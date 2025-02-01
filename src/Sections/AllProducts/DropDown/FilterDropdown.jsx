@@ -2,8 +2,10 @@ import { FiChevronDown, } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Option from "./Option";
+import ClearOption from "../../../Component/AllProduct/ClearOption";
+import { IoInfiniteSharp } from "react-icons/io5";
 
-const FilterDropdown = ({ dropBtnText, setDropdownData, dropDownOptionsData, setCurrentPage, }) => {
+const FilterDropdown = ({ dropBtnText, setDropdownData, dropDownOptionsData, setCurrentPage, setFilterDropdownData, setSortByDropdownData, setSearch }) => {
 
     const [open, setOpen] = useState(false);
 
@@ -13,7 +15,12 @@ const FilterDropdown = ({ dropBtnText, setDropdownData, dropDownOptionsData, set
         setOpen(false);
     };
 
-
+    const handleCLear = () => {
+        setFilterDropdownData(''),
+            setSortByDropdownData(''),
+            setSearch('');
+        setOpen(false);
+    };
 
 
     const wrapperVariants = {
@@ -41,11 +48,11 @@ const FilterDropdown = ({ dropBtnText, setDropdownData, dropDownOptionsData, set
 
 
     return (
-        <div className=" flex items-center justify-center relative   ">
+        <div className=" flex items-center justify-center relative z-50 ">
             <motion.div animate={open ? "open" : "closed"} className="relative">
                 <button
                     onClick={() => setOpen((pv) => !pv)}
-                    className="flex  font-lexend py-4 px-5 md:px-[70px]  items-center whitespace-nowrap  "
+                    className="flex font-lexend py-4 px-5 md:px-[70px]  items-center whitespace-nowrap  "
                 >
                     <span className="font-light">{dropBtnText}</span>
                     <motion.span variants={iconVariants}>
@@ -53,20 +60,19 @@ const FilterDropdown = ({ dropBtnText, setDropdownData, dropDownOptionsData, set
                     </motion.span>
                 </button>
 
-                <motion.ul
-                    initial={wrapperVariants.closed}
-                    variants={wrapperVariants}
-                    style={{ originY: "top", translateX: "-50%" }}
-                    className="flex flex-col gap-2 p-2 rounded-lg shadow-2xl absolute top-[120%] left-[70%] w-48  overflow-hidden"
-                >
-
-                    {
-                        dropDownOptionsData?.map((got, idx) => (
-                            <Option key={idx} handleDropDownOptionData={handleDropDownOptionData} setOpen={setOpen} Icon={got.icon} text={got.name} ></Option>
-                        ))
-                    }
-
-                </motion.ul>
+                <div className="relative z-50">
+                    <motion.ul
+                        initial={wrapperVariants.closed}
+                        variants={wrapperVariants}
+                        style={{ originY: "top", translateX: "-50%" }}
+                        className="flex flex-col gap-2 p-2 rounded-lg shadow-2xl top-[120%] left-[130%] lg:left-[70%] w-48 absolute z-50 bg-[#D8D8D8]"
+                    >
+                        {dropDownOptionsData?.map((got, idx) => (
+                            <Option key={idx} handleDropDownOptionData={handleDropDownOptionData} setOpen={setOpen} Icon={got.icon} text={got.name} />
+                        ))}
+                        <ClearOption handleCLear={handleCLear} Icon={IoInfiniteSharp} text="All" />
+                    </motion.ul>
+                </div>
             </motion.div>
         </div>
     );

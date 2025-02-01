@@ -55,7 +55,7 @@ const SortByDropdown = ({ dropBtnText, setDropdownData, dropDownOptionsData, set
                     initial={wrapperVariants.closed}
                     variants={wrapperVariants}
                     style={{ originY: "top", translateX: "-50%" }}
-                    className="flex flex-col gap-2 p-2 rounded-lg shadow-2xl absolute top-[120%] left-[40%] w-48 overflow-hidden"
+                    className="flex flex-col gap-2 p-2 rounded-lg shadow-2xl top-[120%] left-[30%] w-48 absolute z-50 bg-[#D8D8D8]"
                 >
 
                     {

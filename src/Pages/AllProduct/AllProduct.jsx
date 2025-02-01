@@ -10,7 +10,6 @@ import { IoDiamondOutline } from "react-icons/io5";
 import { BsSmartwatch } from "react-icons/bs";
 import { MdSportsFootball } from "react-icons/md";
 import { TbPeace } from "react-icons/tb";
-import { MdAllInclusive } from "react-icons/md";
 
 
 // sortBy icons
@@ -55,7 +54,7 @@ const AllProduct = () => {
         },
     });
 
-
+    // send data query for length
     const { data: productCount = [] } = useQuery({
         queryKey: ['productCount', filterDropdownData, search],
         queryFn: async () => {
@@ -84,16 +83,25 @@ const AllProduct = () => {
     };
 
 
+
+
     return (
-        <div className="relative min-h-screen w-full">
+        <div className="relative min-h-screen w-full ">
             <div className="pt-24">
                 {/* heading text */}
                 <div className="flex border border-[#BEBEBE] justify-between text-center items-center">
 
                     {/* left filter dropdown  */}
-                    <div className="border-x border-[#BEBEBE]">
-                        <FilterDropdown setCurrentPage={setCurrentPage} dropDownOptionsData={filterDropdownOptionsData} setDropdownData={setFilterDropdownData} dropBtnText="Filter" setFilterDropdownData={setFilterDropdownData}
-                            setSortByDropdownData={setSortByDropdownData} ></FilterDropdown>
+                    <div className="relative border-x border-[#BEBEBE] z-50">
+                        <FilterDropdown
+                            setCurrentPage={setCurrentPage}
+                            dropDownOptionsData={filterDropdownOptionsData}
+                            setDropdownData={setFilterDropdownData}
+                            dropBtnText="Filter"
+                            setFilterDropdownData={setFilterDropdownData}
+                            setSortByDropdownData={setSortByDropdownData}
+                            setSearch={setSearch}
+                        />
                     </div>
 
                     {/* product length */}
@@ -104,7 +112,7 @@ const AllProduct = () => {
                         {/* search */}
 
                         <form onSubmit={handleSearch} className="flex items-center gap-5 font-light font-lexend py-4 border-x px-5 md:px-10 border-[#BEBEBE] whitespace-nowrap">
-                            <input type="text" placeholder="Search" name="search" className="bg-[#D8D8D8] w-40 outline-none" />
+                            <input type="text" placeholder="Search" name="search" className="bg-[#D8D8D8] placeholder-black w-40 outline-none" />
                             <button>
                                 <IoSearchSharp className="text-2xl" />
                             </button>
@@ -119,7 +127,7 @@ const AllProduct = () => {
 
                 {/* card */}
                 <div className="container mx-auto px-4 my-10">
-                    <div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 justify-center">
+                    <div className="grid place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 justify-center z-10">
                         {data.map(product => (
                             <ProductCard key={product._id} productData={product} />
                         ))}
