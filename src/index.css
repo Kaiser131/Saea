@@ -88,8 +88,83 @@ body {
     }
 
 
-    /* very important  */
 
+    .icon {
+        width: 16px;
+        height: 16px;
+        stroke-width: 2;
+        color: white;
+    }
+
+    .blackIcon {
+        width: 16px;
+        height: 16px;
+        stroke-width: 2;
+        color: black;
+    }
+
+    .title {
+        font-size: 16px;
+        letter-spacing: -0.5px;
+        font-weight: 500;
+        z-index: 1;
+    }
+
+    .iconContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 20px;
+
+    }
+
+    .whiteFilledButtonContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        background-color: #D8D8D8;
+        border-radius: 2px;
+        padding: 12px 36px;
+        overflow: clip;
+        border: 1px black solid;
+    }
+
+    .blackFilledButtonContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        background-color: black;
+        border-radius: 2px;
+        padding: 12px 36px;
+        overflow: clip;
+        border: 1px solid black;
+    }
+
+    .circle {
+        width: 6px;
+        height: 6px;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        left: -10px;
+    }
+
+    .whiteCircle {
+        width: 6px;
+        height: 6px;
+        background-color: #D8D8D8;
+        border-radius: 50%;
+        position: absolute;
+        left: -10px;
+    }
+
+
+    /* very important  */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,
