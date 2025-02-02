@@ -5,6 +5,8 @@ import axios from "axios";
 import Card from "../../Component/Home/TopPicsTab/Card";
 import EncryptButton from "../../Component/Shared/EncryptBtn";
 import { IoSearchSharp } from "react-icons/io5";
+import WhiteFillupBtn from "../../Component/Shared/WhiteFillupBtn";
+import FillUpBtn from "../../Component/Shared/FillUpBtn";
 
 const TopPics = () => {
 
@@ -49,7 +51,7 @@ const TopPics = () => {
                 {/* button */}
                 <div className="flex justify-center mt-10">
                     <Link to='/products'>
-                        <EncryptButton logo={<IoSearchSharp />} name="see more"></EncryptButton>
+                        <FillUpBtn text='See More'></FillUpBtn>
                     </Link>
                 </div>
 

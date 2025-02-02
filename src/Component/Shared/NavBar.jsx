@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useWindowScroll } from "react-use";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-
+import { FaOpencart } from "react-icons/fa6";
 
 const NavBar = () => {
 
@@ -13,7 +13,6 @@ const NavBar = () => {
         { name: 'Home', destination: '/' },
         { name: 'Products', destination: '/products' },
         { name: 'Contact', destination: '/contact' },
-        { name: 'about', destination: '/contact' },
     ];
 
 
@@ -93,12 +92,14 @@ const NavBar = () => {
                                 </Link>
                             ))}
                         </div>
+                        <Link className="nav-hover-btn" to='/dashboard'>Menu</Link>
                         {
                             user ?
                                 <div onClick={handleLogOut} className="nav-hover-btn">LogOut</div> :
                                 <span className="nav-hover-btn"><Link to='/login'>Login</Link></span>
                         }
-
+                        {/* cart button */}
+                        <Link className="nav-hover-btn" to='/cart'><FaOpencart className="text-4xl" /></Link>
                         {/* music buttton */}
                         <button className="ml-10 flex items-center space-x-0.5" onClick={toggleAudio}>
                             <audio src="/audio/loop.mp3" ref={audioElementRef} className="hidden" loop />

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { motion } from 'framer-motion';
-const WhiteFillupBtn = ({ text }) => {
+const WhiteFillupBtn = ({ text, size = 60 }) => {
 
     const [isHover, setIsHover] = useState(false);
 
@@ -12,7 +12,7 @@ const WhiteFillupBtn = ({ text }) => {
                 onMouseLeave={(e) => setIsHover(false)}
             >
                 <motion.div className="whiteCircle" animate={{
-                    scale: isHover ? 60 : 1,
+                    scale: isHover ? size : 1,
 
                 }}
                     transition={{
