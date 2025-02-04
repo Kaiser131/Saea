@@ -36,7 +36,8 @@ const ProductDetails = () => {
             details,
             category,
             brand,
-            warranty
+            warranty,
+            price
         };
 
         const { data } = axios.post('http://localhost:5000/cart', addCartData);

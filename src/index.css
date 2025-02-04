@@ -164,6 +164,29 @@ body {
     }
 
 
+    .profile-clip {
+        clip-path: polygon(0 58%, 100% 18%, 100% 100%, 0 100%);
+    }
+
+    .profile-clip2 {
+        clip-path: polygon(0 48%, 100% 18%, 100% 100%, 0 100%);
+    }
+
+    .profile-clip3 {
+        clip-path: polygon(0 34%, 100% 18%, 100% 100%, 0 100%);
+    }
+
+    .profile-clip4 {
+        clip-path: polygon(0 34%, 100% 45%, 100% 100%, 0 100%);
+    }
+
+    .profile-clip5 {
+        clip-path: polygon(0 30%, 100% 18%, 100% 100%, 0 100%);
+    }
+
+
+
+
     /* very important  */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,

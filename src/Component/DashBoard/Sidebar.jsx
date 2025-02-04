@@ -4,9 +4,12 @@ import ToggleClose from "./ToggleClose";
 import TitleSection from "./TitleSection";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { CgProfile } from "react-icons/cg";
+import { FaBoxOpen } from "react-icons/fa";
+import { MdWatch } from "react-icons/md";
 
-const Sidebar = () => {
-    const [open, setOpen] = useState(true);
+const Sidebar = ({ open, setOpen }) => {
+
     const [selected, setSelected] = useState("Dashboard");
 
     return (
@@ -29,19 +32,21 @@ const Sidebar = () => {
                     location='/'
                 />
                 <Option
-                    Icon={FiDollarSign}
-                    title="Sales"
+                    Icon={CgProfile}
+                    title="Profile"
                     selected={selected}
                     setSelected={setSelected}
                     open={open}
-                    notifs={3}
+                    location='profile'
                 />
                 <Option
-                    Icon={FiMonitor}
-                    title="View Site"
+                    Icon={MdWatch}
+                    title="Watches"
                     selected={selected}
                     setSelected={setSelected}
                     open={open}
+                    location='/products'
+                // notifs={3}
                 />
                 <Option
                     Icon={FiShoppingCart}
@@ -52,11 +57,12 @@ const Sidebar = () => {
                     location='myCart'
                 />
                 <Option
-                    Icon={FiTag}
-                    title="Tags"
+                    Icon={FaBoxOpen}
+                    title="Add Product"
                     selected={selected}
                     setSelected={setSelected}
                     open={open}
+                    location='addProduct'
                 />
                 <Option
                     Icon={FiBarChart}
@@ -71,6 +77,7 @@ const Sidebar = () => {
                     selected={selected}
                     setSelected={setSelected}
                     open={open}
+                    location='allUsers'
                 />
             </div>
 

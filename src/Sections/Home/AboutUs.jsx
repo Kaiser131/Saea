@@ -42,7 +42,7 @@ const AboutUs = () => {
             <div id="clip" className="h-dvh w-screen">
                 <div className="mask-clip-path about-image">
 
-                    <img src={clipImg} alt="Background" className='absolute left-0 top-0 size-full object-cover' />
+                    <img loading='lazy' src={clipImg} alt="Background" className='absolute left-0 top-0 size-full object-cover' />
 
                 </div>
             </div>
