@@ -10,8 +10,6 @@ import useAuth from "../../hooks/useAuth";
 import Loading from "../Loading/Loading";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import CloseModal from "../../Component/ProductDetails/CloseModal";
-import PaymentModal from "../../Component/Shared/PaymentModal";
-import BuyNowModal from "../../Component/Shared/BuyNowMOdal";
 
 const ProductDetails = () => {
     const { id } = useParams();

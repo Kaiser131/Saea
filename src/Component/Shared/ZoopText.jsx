@@ -15,7 +15,7 @@ const ZoopText = ({ children, href, design }) => {
             }}
         >
             <div>
-                {children.split("").map((l, i) => (
+                {children?.split("").map((l, i) => (
                     <motion.span
                         variants={{
                             initial: {
