@@ -4,14 +4,16 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { imageUpload } from "../../Utils/imageUpload";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddProduct = () => {
 
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
 
     const { mutateAsync } = useMutation({
         mutationFn: async (addData) => {
-            const { data } = await axios.post('http://localhost:5000/watch', addData);
+            const { data } = await axiosSecure.post('/watch', addData);
             return data;
         },
         onSuccess: () => {

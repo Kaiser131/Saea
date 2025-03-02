@@ -9,12 +9,15 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const PaymentCheckOutForm = ({ setOpen, open, cartTotalPrice, buyingProduct }) => {
     const stripe = useStripe();
     const elements = useElements();
 
     const { user } = useAuth();
+
+    const axiosSecret = useAxiosSecure();
 
     const [clientSecret, setClientSecret] = useState();
     const [cardError, setCardError] = useState('');
@@ -30,7 +33,7 @@ const PaymentCheckOutForm = ({ setOpen, open, cartTotalPrice, buyingProduct }) =
 
     // get client secret
     const getClientSecret = async price => {
-        const { data } = await axios.post(`http://localhost:5000/create-payment-intent`, price);
+        const { data } = await axiosSecret.post(`/create-payment-intent`, price);
         setClientSecret(data?.clientSecret);
         // return data;
     };

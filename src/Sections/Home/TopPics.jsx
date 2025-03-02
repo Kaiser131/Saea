@@ -1,23 +1,24 @@
 import { Link, useSearchParams } from "react-router-dom";
 import SlideTabs from "../../Component/Home/TopPicsTab/SlideTabs";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import FillUpBtn from "../../Component/Shared/FillUpBtn";
 import ProductCard from "../../Component/AllProduct/ProductCard";
 import ZoopText from "../../Component/Shared/ZoopText";
 import useAuth from "../../hooks/useAuth";
 import Loading from "../../Pages/Loading/Loading";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const TopPics = () => {
 
     const [params, setParams] = useSearchParams();
     const category = params.get('category');
 
+    const axiosSecure = useAxiosSecure();
 
     const { data = [], isLoading } = useQuery({
         queryKey: ['watchCategory', category],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/watchs?category=${category}`);
+            const { data } = await axiosSecure.get(`/watchs?category=${category}`);
             return data;
         }
     });
