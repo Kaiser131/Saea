@@ -1,17 +1,13 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import { RxCross2 } from "react-icons/rx";
-import WhiteFillupBtn from '../../Component/Shared/WhiteFillupBtn';
 import toast from 'react-hot-toast';
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import PaymentCheckOutForm from '../../Component/Forms/PaymentCheckOutForm';
 import PaymentModal from '../../Component/Shared/PaymentModal';
 import { useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Loading from '../Loading/Loading';
 import CartEmptyPage from './CartEmptyPage';
-import BuyNowModal from '../../Component/Shared/BuyNowMOdal';
 import FillUpBtn from '../../Component/Shared/FillUpBtn';
 
 
