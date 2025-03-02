@@ -1,54 +1,100 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import { RxCross2 } from "react-icons/rx";
 import WhiteFillupBtn from '../../Component/Shared/WhiteFillupBtn';
+import toast from 'react-hot-toast';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import PaymentCheckOutForm from '../../Component/Forms/PaymentCheckOutForm';
+import PaymentModal from '../../Component/Shared/PaymentModal';
+import { useState } from 'react';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Loading from '../Loading/Loading';
+import CartEmptyPage from './CartEmptyPage';
+import BuyNowModal from '../../Component/Shared/BuyNowMOdal';
+import FillUpBtn from '../../Component/Shared/FillUpBtn';
+
+
+// payment Promise
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const Cart = () => {
 
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
+    const [open, setOpen] = useState(false);
+
+    const axiosSecure = useAxiosSecure();
+
+    // total price
+    const { data: cartTotalPrice = [], refetch: totalPriceRefetch } = useQuery({
+        queryKey: ['cartDataInfo', user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/cartDataInfo/${user?.email}`);
+            return data;
+        },
+    });
 
 
-    const { data = [] } = useQuery({
+    // cart data
+    const { data = [], refetch, isLoading } = useQuery({
         queryKey: ['cartData', user?.email],
         queryFn: async () => {
-            const { data: product } = await axios.get(`http://localhost:5000/cartData/${user?.email}`);
+            const { data: product } = await axiosSecure.get(`/cartData/${user?.email}`);
             return product;
         }
     });
 
 
-    // reseting now
+
+    // delete cart Item
+    const { mutateAsync } = useMutation({
+        mutationFn: async (id) => {
+            const { data } = await axiosSecure.delete(`/cartData/${id}`);
+            return data;
+        },
+        onSuccess: () => {
+            toast.success('Deleted successfully !');
+        }
+    });
+
+    const handleDelete = async (id) => {
+        await mutateAsync(id);
+        refetch();
+        totalPriceRefetch();
+    };
+
+    if (loading || isLoading) return <Loading />;
+    if (data?.length === 0) return <CartEmptyPage />;
 
     return (
         <div>
-            <div className='flex justify-between'>
+            <div className='flex flex-col md:flex-row justify-between'>
 
 
                 {/* left div */}
-                <div className='w-2/3'>
+                <div className='mx-auto max-w-full md:w-2/3'>
 
                     {/* heading div */}
                     <div>
-                        <div className="flex p-10 justify-between py-5 border-b border-black">
-                            <h1 className="font-lexend text-3xl font-bold">Shopping Cart</h1>
-                            <p className="font-lexend">{data.length} Items</p>
+                        <div className="flex px-5 justify-between py-5 mx-10 my-5 border-b border-black md:px-10">
+                            <h1 className="font-lexend text-xl md:text-3xl font-bold">Shopping Cart</h1>
+                            <p className="font-lexend text-xs md:text-base">{data.length} Items</p>
                         </div>
                     </div>
 
 
 
                     {/* table div */}
-                    <div className=' max-w-[800px] mx-auto'>
-                        <table className="border-collapse my-5 w-full">
+                    <div className=' max-w-[400px] my-10 px-5 md:p-0 lg:max-w-[800px] mx-auto'>
+                        <table className="border-collapse w-full">
                             <thead className="uppercase w-full">
                                 <tr className="w-full">
-                                    <th className="py-4 text-xs font-semibold font-raleway text-left w-[16.6%]">Product</th>
-                                    <th className="py-4 text-xs font-semibold font-raleway w-[16.6%]"></th>
-                                    <th className="py-4 text-xs font-semibold font-raleway w-[16.6%]">Quantity</th>
-                                    <th className="py-4 text-xs font-semibold font-raleway w-[16.6%]">Price</th>
-                                    <th className="py-4 text-xs font-semibold font-raleway w-[16.6%]">Total</th>
-                                    <th className="py-4 text-xs font-semibold font-raleway w-[16.6%]">Action</th>
+                                    <th className="md:py-4 text-xs font-semibold font-raleway text-left w-[16.6%]">Product</th>
+                                    <th className="md:py-4 text-xs font-semibold font-raleway w-[16.6%]"></th>
+                                    <th className="md:py-4 text-xs font-semibold font-raleway w-[16.6%]">Quantity</th>
+                                    <th className="md:py-4 text-xs font-semibold font-raleway w-[16.6%]">Price</th>
+                                    <th className="md:py-4 text-xs font-semibold font-raleway w-[16.6%] md-lg-only">Total</th>
+                                    <th className="md:py-4 text-xs font-semibold font-raleway w-[16.6%]">Action</th>
                                 </tr>
                             </thead>
 
@@ -57,7 +103,7 @@ const Cart = () => {
                                     <tr className="w-full">
                                         <td className="py-4 w-[16.6%]">
                                             <div
-                                                className="w-20 h-20 bg-center bg-cover rounded"
+                                                className="size-10 md:size-20 bg-center bg-cover rounded"
                                                 style={{ backgroundImage: `url('${product?.image}')` }}
                                             />
                                         </td>
@@ -69,9 +115,9 @@ const Cart = () => {
                                         </td>
                                         <td className="text-center py-4 w-[16.6%]">{product?.quantity}</td>
                                         <td className="text-center py-4 w-[16.6%]">${product?.price}</td>
-                                        <td className="text-center py-4 w-[16.6%]">${product?.totalPrice}</td>
+                                        <td className="text-center py-4 w-[16.6%] md-lg-only">${product?.totalPrice}</td>
                                         <td className="text-center py-4 text-2xl w-[16.6%]">
-                                            <button><RxCross2 /></button>
+                                            <button onClick={() => handleDelete(product?._id)}><RxCross2 /></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -85,33 +131,44 @@ const Cart = () => {
 
 
                 {/* right div */}
-                <div className=' w-1/3 '>
+                <div className=' w-full md:w-1/3 '>
 
-                    <div className='bg-[#BEBEBE] flex justify-center items-center h-screen '>
+                    <div className="bg-[#262626] text-white w-full p-10 items-center md:fixed md:right-0 min-h-screen md:w-[35%]">
 
-                        <div className="flex-[35%] justify-center items-center mx-auto p-10">
+                        <div className="w-full md:p-5 lg:p-10">
 
-                            <div className="border-b pb-5 border-black space-y-5">
-                                <h1 className="font-lexend text-3xl font-bold">Order Summary</h1>
+                            {/* Order Summary */}
+                            <div className="border-b pb-5  space-y-5">
+                                <h1 className="font-lexend text-xl md:text-3xl font-bold">Order Summary</h1>
                                 <p className="font-lexend">Items {data.length}</p>
-                            </div>
 
-                            <form className='flex space-y-5 flex-col my-10'>
-                                <h1 className='text-2xl font-semibold'>Promo Code</h1>
-                                <input type="text" name="promo" placeholder='Enter Your Code' className='bg-[#BEBEBE] placeholder:text-black  py-2 border-b border-black outline-none' id="" />
-                                <button className='border w-28 px-4 py-2 border-black '>APPLY</button>
-                            </form>
-
-                            <div className=' border-t border-black'>
-                                <div className='my-5 flex justify-evenly'>
-                                    <h1>Total Cost </h1>
-                                    <h1>12 $</h1>
+                                {/* Scrollable Order Items List */}
+                                <div className="md:max-h-[500px] flex flex-col w-full justify-between md:overflow-y-scroll space-y-3 px-5">
+                                    {data.map((got) => (
+                                        <div className="flex justify-between" key={got?._id}>
+                                            <p>{got?.name}</p>
+                                            <p>{got?.quantity}</p>
+                                        </div>
+                                    ))}
                                 </div>
-                                <WhiteFillupBtn text='Buy Now' size={240} />
                             </div>
+
+                            {/* Fixed Bottom Button */}
+                            <div className="md:fixed mt-2 md:w-[20%] ">
+                                <div className="flex justify-between">
+                                    <h1>Total Cost</h1>
+                                    <h1>$ {cartTotalPrice.totalPrice ? cartTotalPrice.totalPrice : 0}</h1>
+                                </div>
+                                <div onClick={() => setOpen(!open)} className="w-full mt-10">
+                                    <FillUpBtn size={240} text='Buy Now' ></FillUpBtn>
+                                </div>
+                                <PaymentModal open={open} setOpen={setOpen} />
+                            </div>
+
                         </div>
 
                     </div>
+
 
                 </div>
 

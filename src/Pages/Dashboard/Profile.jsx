@@ -3,7 +3,7 @@ import useAuth from "../../hooks/useAuth";
 const Profile = () => {
     const { user } = useAuth();
     return (
-        <div className="min-h-screen w-screen flex justify-center items-center">
+        <div className="min-h-screen w-full hidden md:flex  md:justify-center md:items-center">
             <div className=" relative w-[400px] h-[600px] glass-morphism shadow-xl">
                 <div className="bg-cover w-full h-full bg-center size-80 mr-4" style={{ backgroundImage: `url("${user?.photoURL}")` }} />
                 <div className="absolute bottom-0 profile-clip w-[400px] h-[600px] bg-white" />

@@ -1,7 +1,6 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 export const AuthContext = createContext(null);
@@ -29,11 +28,28 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider);
     };
 
+    // save users data
+    const saveUser = async (user) => {
+        const currentUser = {
+            image: user?.photoURL,
+            email: user?.email,
+            status: "Verified",
+            role: 'Guest'
+        };
+
+        const { data } = await axios.put(`http://localhost:5000/usersData`, currentUser);
+        return data;
+    };
+
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             console.log('stateUser', currentUser);
+            if (currentUser) {
+                saveUser(currentUser);
+            }
             setLoading(false);
         });
 
@@ -50,8 +66,9 @@ const AuthProvider = ({ children }) => {
     };
 
 
+
     const authInfo = {
-        user, loading, setLoading, createUser, login, signInWithGoogle, logOut
+        user, loading, setLoading, createUser, login, signInWithGoogle, logOut, saveUser
     };
 
 

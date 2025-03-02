@@ -2,8 +2,11 @@ import { Outlet } from "react-router-dom";
 import NavBar from "../Component/Shared/NavBar";
 
 const Main = () => {
+
+
+
     return (
-        <div>
+        <div className="selection:bg-[#262626] selection:text-white">
             <NavBar></NavBar>
             <Outlet></Outlet>
 

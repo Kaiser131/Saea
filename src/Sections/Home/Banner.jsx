@@ -8,7 +8,14 @@ import hero2 from '/images/hero-2.webp';
 import hero3 from '/images/image-1.webp';
 import hero4 from '/images/image-2.webp';
 
+import { delay, motion } from 'framer-motion';
+
+
+
 const Banner = () => {
+
+    const bannerText = 'S i e a';
+
     return (
         <div className="w-full h-screen relative">
             <div className="absolute inset-0 bg-black bg-opacity-20 pointer-events-none z-10"></div>
@@ -30,14 +37,58 @@ const Banner = () => {
                 </AwesomeSlider>
             </div>
 
-            <div className="absolute text-center top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-2/4 z-20">
-                <h1 className="text-6xl font-kaushan sm:text-8xl md:text-[160px] text-white drop-shadow-lg">
-                    Siea
-                </h1>
-                <h1 className="text-xl font-sirin text-white drop-shadow-lg">
+            <motion.div
+                animate={{
+                    transition: {
+                        delayChildren: 0.4,
+                        staggerChildren: 0.1,
+                    },
+                }}
+                className="absolute text-center top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-2/4 z-20 px-3 overflow-hidden"
+            >
+                <div className="mt-4">
+                    {bannerText.split(" ").map((text, idx) => (
+                        <motion.p
+                            key={idx}
+                            initial={{ y: 320, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{
+                                delay: 0.5 + idx * 0.1, duration: 1.,
+                                staggerChildren: {
+                                    delay: 0.3
+                                }
+                            }}
+                            className="text-6xl inline-flex relative whitespace-nowrap font-kaushan sm:text-8xl md:text-[160px] text-white drop-shadow-lg z-[-1]"
+                        >
+                            {text}
+                        </motion.p>
+                    ))}
+                </div>
+
+
+                {/* Subtitle */}
+                <motion.h1
+                    initial={{
+                        opacity: 0
+                    }}
+                    animate={{
+                        opacity: 1,
+                        transition: {
+                            ease: 'easeInOut',
+                            duration: 1.5,
+                            delay: 2
+                        }
+                    }}
+
+                    className="text-xl font-sirin text-white drop-shadow-lg z-20">
                     Inspire, Create, Believe
-                </h1>
-            </div>
+                </motion.h1>
+
+                {/* Mapped Text Below with Stagger Effect */}
+
+            </motion.div>
+
+
         </div>
 
 

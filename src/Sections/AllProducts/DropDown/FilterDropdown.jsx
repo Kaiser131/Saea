@@ -5,13 +5,13 @@ import Option from "./Option";
 import ClearOption from "../../../Component/AllProduct/ClearOption";
 import { IoInfiniteSharp } from "react-icons/io5";
 
-const FilterDropdown = ({ dropBtnText, setDropdownData, dropDownOptionsData, setCurrentPage, setFilterDropdownData, setSortByDropdownData, setSearch }) => {
+const FilterDropdown = ({ dropBtnText, dropDownOptionsData, setCurrentPage, setFilterDropdownData, setSortByDropdownData, setSearch }) => {
 
     const [open, setOpen] = useState(false);
 
     const handleDropDownOptionData = (text) => {
         setCurrentPage(1);
-        setDropdownData(text);
+        setFilterDropdownData(text);
         setOpen(false);
     };
 

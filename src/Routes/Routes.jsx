@@ -14,6 +14,8 @@ import Cart from "../Pages/Dashboard/Cart";
 import Profile from "../Pages/Dashboard/Profile";
 import AllUsers from "../Pages/Dashboard/AllUsers";
 import AddProduct from "../Pages/Dashboard/AddProduct";
+import PrivateRoute from "./PrivateRoute";
+import AnimateRoutes from "../Pages/Animate/AnimateRoutes";
 
 
 
@@ -24,23 +26,35 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home />
             },
             {
                 path: '/product/:id',
-                element: <ProductDetails></ProductDetails>,
+                element:
+                    <AnimateRoutes>
+                        <ProductDetails />
+                    </AnimateRoutes>
             },
             {
                 path: '/products',
-                element: <AllProduct></AllProduct>
+                element:
+                    <AnimateRoutes>
+                        <AllProduct />
+                    </AnimateRoutes>
             },
             {
                 path: '/login',
-                element: <Login></Login>
+                element:
+                    <AnimateRoutes>
+                        <Login />
+                    </AnimateRoutes>
             },
             {
                 path: '/signup',
-                element: <SignUp></SignUp>
+                element:
+                    <AnimateRoutes>
+                        <SignUp />
+                    </AnimateRoutes>
             },
 
         ]
@@ -51,23 +65,44 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <DashboardHome></DashboardHome>
+                element: <PrivateRoute>
+                    <AnimateRoutes>
+                        <DashboardHome />
+                    </AnimateRoutes>
+                </PrivateRoute>
             },
             {
                 path: 'myCart',
-                element: <Cart></Cart>
+                element: <PrivateRoute>
+                    <AnimateRoutes>
+                        <Cart />
+                    </AnimateRoutes>
+                </PrivateRoute>
             },
             {
                 path: 'profile',
-                element: <Profile></Profile>
+                element: <PrivateRoute>
+                    <AnimateRoutes>
+                        <Profile />
+                    </AnimateRoutes>
+                </PrivateRoute>
             },
             {
                 path: 'allUsers',
-                element: <AllUsers></AllUsers>
+                element: <PrivateRoute>
+                    <AnimateRoutes>
+                        <AllUsers />
+                    </AnimateRoutes>
+                </PrivateRoute>
             },
             {
                 path: 'addProduct',
-                element: <AddProduct></AddProduct>
+                element:
+                    <PrivateRoute>
+                        <AnimateRoutes>
+                            <AddProduct />
+                        </AnimateRoutes>
+                    </PrivateRoute>
             },
         ]
     }

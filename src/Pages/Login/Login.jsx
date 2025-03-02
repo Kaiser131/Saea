@@ -2,18 +2,25 @@ import bg from '/images/map.webp';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook, FaLock, FaLockOpen } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa6';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SignButton from '../../Component/SignButton/SignButton';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import Loading from '../Loading/Loading';
 
 const Login = () => {
 
     const [passText, setPassText] = useState(true);
     const navigate = useNavigate();
 
-    const { login, signInWithGoogle } = useAuth();
+    const location = useLocation();
+    const from = location?.state || '/';
+
+    const { login, signInWithGoogle, loading } = useAuth();
+    if (loading) {
+        return <Loading></Loading>;
+    }
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -39,7 +46,7 @@ const Login = () => {
         try {
 
             const signIn = await login(email, password);
-            navigate('/');
+            navigate(from);
             toast.success('Login Successful !');
 
         } catch (error) {

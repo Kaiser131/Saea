@@ -1,6 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import FillUpBtn from "../../Component/Shared/FillUpBtn";
 import WhiteFillupBtn from "../../Component/Shared/WhiteFillupBtn";
 import { useState } from "react";
@@ -8,46 +7,69 @@ import CartModal from "../../Component/ProductDetails/CartModal/CartModal";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import Loading from "../Loading/Loading";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import CloseModal from "../../Component/ProductDetails/CloseModal";
+import PaymentModal from "../../Component/Shared/PaymentModal";
+import BuyNowModal from "../../Component/Shared/BuyNowMOdal";
 
 const ProductDetails = () => {
     const { id } = useParams();
 
     const [open, setOpen] = useState(false);
+    const [uxModal, setUxModal] = useState(false);
+    const [buyModal, setBuyModal] = useState(false);
     const [quantity, setQuantity] = useState(1);
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
 
-    const { data: watchData = [] } = useQuery({
+    const axiosSecure = useAxiosSecure();
+
+    const { data: watchData = [], isLoading } = useQuery({
         queryKey: ['watchData', id],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/watch/${id}`);
+            const { data } = await axiosSecure.get(`/watchDetails/${id}`);
             return data;
         }
     });
 
-    const { SKU, availability, brand, category, details, image, material, name, price, warranty, waterResistance, } = watchData;
+    const { SKU, availability, brand, category, details, image, material, name, price, warranty, waterResistance, submittedBy } = watchData;
 
-    const handleCart = () => {
+    const { mutateAsync } = useMutation({
+        mutationFn: async (add) => {
+            const { data } = await axiosSecure.post('/cart', add);
+            return data;
+        },
+        onSuccess: () => {
+            toast.success('Added Successfully, Check Your Cart !');
+        }
+    });
+
+    const handleCart = async () => {
         const addCartData = {
             user: user?.email,
             name: name,
             quantity: quantity,
             totalPrice: quantity * price,
             image: image,
-            details,
             category,
             brand,
-            warranty,
-            price
+            price,
+            submittedBy,
+            SKU
         };
-
-        const { data } = axios.post('http://localhost:5000/cart', addCartData);
-        console.log(data);
+        await mutateAsync(addCartData);
         setQuantity(1);
         setOpen(false);
-        toast.success('Added Successfully, Check Your Cart !');
-
     };
 
+    const handleBuy = () => {
+        setBuyModal(true);
+    };
+
+
+    if (loading || isLoading) {
+        return <Loading></Loading>;
+    }
 
 
     return (
@@ -64,7 +86,7 @@ const ProductDetails = () => {
                     />
                 </div>
 
-                <div className="w-1/2 flex flex-col h-full p-10 md:p-0">
+                <div className="w-1/2 flex flex-col h-full p-10 md:p-7">
                     <h1 className="text-4xl font-lexend font-light my-10">{name}</h1>
                     <p className="font-lexend">{details}</p>
                     <p className="font-lexend text-3xl font-extralight my-3">{price}$</p>
@@ -95,11 +117,25 @@ const ProductDetails = () => {
                         <span onClick={() => setOpen(true)}>
                             <FillUpBtn text='Add to Cart' color='white' />
                         </span>
-                        <WhiteFillupBtn text='Buy Now' />
 
+                        <span onClick={() => handleBuy(watchData)}>
+                            <WhiteFillupBtn text='Buy Now' />
+                        </span>
+
+                        {/* modals */}
+
+                        {/* payment modal */}
+                        <BuyNowModal open={buyModal} setOpen={setBuyModal} product={watchData} />
+
+                        {/* pop up modal after the cart adding */}
+                        <CloseModal uxModal={uxModal} setUxModal={setUxModal} />
+
+
+                        {/* cart modal */}
                         <CartModal open={open} setOpen={setOpen}>
                             <div className="mx-auto max-w-2xl space-y-4 ">
-                                <h2 className="text-4xl font-bold font-lexend my-5 ">
+                                <h2
+                                    className="text-4xl font-bold font-lexend my-5 ">
                                     Add To Your Cart
                                 </h2>
 
@@ -152,8 +188,11 @@ const ProductDetails = () => {
                                     <h1 className="font-lexend text-xl">Total</h1>
                                     <p className="text-xl">$ {price * quantity}</p>
                                 </div>
-                                <div onClick={handleCart}>
-                                    <WhiteFillupBtn text='Add' size={226} />
+                                <div onClick={() => {
+                                    handleCart();
+                                    setUxModal(true);
+                                }}>
+                                    <WhiteFillupBtn text="Add" size={226} />
                                 </div>
 
                             </div>
@@ -162,10 +201,11 @@ const ProductDetails = () => {
                     </div>
                 </div>
 
-            </div>
+            </div >
 
 
-        </div>
+
+        </div >
     );
 };
 

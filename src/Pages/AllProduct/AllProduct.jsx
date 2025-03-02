@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import ProductCard from "../../Component/AllProduct/ProductCard";
 import { IoSearchSharp } from "react-icons/io5";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import { useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa6";
 
 // filter icons
 import { IoDiamondOutline } from "react-icons/io5";
@@ -17,6 +18,9 @@ import { MdOutlineTurnSharpRight } from "react-icons/md";
 import { MdUTurnLeft } from "react-icons/md";
 import SortByDropdown from "../../Sections/AllProducts/DropDown/SortByDropdown";
 import FilterDropdown from "../../Sections/AllProducts/DropDown/FilterDropdown";
+import useAuth from "../../hooks/useAuth";
+import Loading from "../Loading/Loading";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 
 const AllProduct = () => {
@@ -28,7 +32,7 @@ const AllProduct = () => {
     const [sortByDropdownData, setSortByDropdownData] = useState("");
     const [search, setSearch] = useState("");
 
-    console.log(sortByDropdownData);
+    const axiosCommon = useAxiosCommon();
 
 
     // left Filter dropdownData
@@ -46,10 +50,12 @@ const AllProduct = () => {
     ];
 
 
-    const { data = [] } = useQuery({
+    const { loading } = useAuth();
+
+    const { data = [], isLoading } = useQuery({
         queryKey: ['allProducts', currentPage, itemsPerPage, filterDropdownData, sortByDropdownData, search],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/all-product?page=${currentPage}&size=${itemsPerPage}&category=${filterDropdownData}&sort=${sortByDropdownData}&search=${search}`);
+            const { data } = await axiosCommon.get(`/all-product?page=${currentPage}&size=${itemsPerPage}&category=${filterDropdownData}&sort=${sortByDropdownData}&search=${search}`);
             return data;
         },
     });
@@ -58,7 +64,7 @@ const AllProduct = () => {
     const { data: productCount = [] } = useQuery({
         queryKey: ['productCount', filterDropdownData, search],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/product-count?category=${filterDropdownData}&search=${search}`);
+            const { data } = await axiosCommon.get(`/product-count?category=${filterDropdownData}&search=${search}`);
             setCount(data.count);
             return data;
         }
@@ -67,13 +73,16 @@ const AllProduct = () => {
 
 
     const totalPages = Math.ceil(count / itemsPerPage);
-    const pages = [...Array(totalPages).keys()].map(el => el + 1);
+    const pages = [...Array(totalPages).keys()].map(element => element + 1);
 
     // handle pagination button
     const handlePaginationButton = (value) => {
         setCurrentPage(value);
     };
 
+    if (loading || isLoading) {
+        return <Loading></Loading>;
+    }
 
     // search function
     const handleSearch = (e) => {
@@ -87,16 +96,16 @@ const AllProduct = () => {
 
     return (
         <div className="relative min-h-screen w-full ">
+
             <div className="pt-24">
                 {/* heading text */}
                 <div className="flex border border-[#BEBEBE] justify-between text-center items-center">
 
                     {/* left filter dropdown  */}
-                    <div className="relative border-x border-[#BEBEBE] z-50">
+                    <div className="relative md:border-x border-[#BEBEBE] z-50">
                         <FilterDropdown
                             setCurrentPage={setCurrentPage}
                             dropDownOptionsData={filterDropdownOptionsData}
-                            setDropdownData={setFilterDropdownData}
                             dropBtnText="Filter"
                             setFilterDropdownData={setFilterDropdownData}
                             setSortByDropdownData={setSortByDropdownData}
@@ -105,21 +114,21 @@ const AllProduct = () => {
                     </div>
 
                     {/* product length */}
-                    <h1 className="font-light hidden md:block font-lexend py-4 w-full ">{data.length} Products</h1>
+                    <h1 className="font-light hidden md:block font-lexend md:py-4 md:w-full ">{data.length} Products</h1>
 
                     {/* search and right dropdown */}
                     <div className="flex">
                         {/* search */}
 
-                        <form onSubmit={handleSearch} className="flex items-center gap-5 font-light font-lexend py-4 border-x px-5 md:px-10 border-[#BEBEBE] whitespace-nowrap">
-                            <input type="text" placeholder="Search" name="search" className="bg-[#D8D8D8] placeholder-black w-40 outline-none" />
+                        <form onSubmit={handleSearch} className="flex px-2 items-center gap-2 font-light font-lexend py-4 border-x  md:px-10 border-[#BEBEBE] whitespace-nowrap">
+                            <input type="text" placeholder="Search" name="search" className="bg-[#D8D8D8] placeholder-black w-20 outline-none" />
                             <button>
                                 <IoSearchSharp className="text-2xl" />
                             </button>
                         </form>
 
                         {/* right dropdown Sort By */}
-                        <div>
+                        <div className="">
                             <SortByDropdown setDropdownData={setSortByDropdownData} dropDownOptionsData={sortByDropdownOptionsData} dropBtnText='Sort By' ></SortByDropdown>
                         </div>
                     </div>
@@ -137,13 +146,13 @@ const AllProduct = () => {
 
                 {/* pagination */}
 
-                <div className="flex mt-10 w-20 mx-auto">
+                <div className="flex text-xl py-10 w-20 mx-auto">
 
                     {/* previous */}
                     <button
                         disabled={currentPage === 1}
                         onClick={() => handlePaginationButton(currentPage - 1)}>
-                        <FaArrowAltCircleLeft></FaArrowAltCircleLeft>
+                        <FaArrowLeft />
                     </button>
 
 
@@ -157,7 +166,7 @@ const AllProduct = () => {
                     <button
                         disabled={currentPage === totalPages}
                         onClick={() => handlePaginationButton(currentPage + 1)}>
-                        <FaArrowAltCircleRight></FaArrowAltCircleRight>
+                        <FaArrowRight />
                     </button>
                 </div>
 

@@ -9,6 +9,8 @@ const SlideTabs = () => {
         opacity: 0,
     });
 
+    const [idxNum, setIdxNum] = useState();
+
     const tabItems = ['Luxury', 'Casual', 'Smartwatches', 'Sports'];
 
     return (
@@ -19,10 +21,10 @@ const SlideTabs = () => {
                     opacity: 0,
                 }));
             }}
-            className="relative mx-auto flex w-fit  border-black bg-[#D8D8D8] p-1"
+            className="relative mx-auto flex w-fit  border-black bg-[#D8D8D8] "
         >
             {tabItems.map((got, idx) => (
-                <Tab key={idx} setPosition={setPosition} >{got}</Tab>
+                <Tab key={idx} idx={idx} idxNum={idxNum} setIdxNum={setIdxNum} setPosition={setPosition} >{got}</Tab>
             ))}
 
             <Cursor position={position} />

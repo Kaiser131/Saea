@@ -12,6 +12,12 @@ body {
 
 @layer utilities {
 
+    @media (max-width: 768px) {
+        .md-lg-only {
+            display: none;
+        }
+    }
+
 
     .mask-clip-path {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);

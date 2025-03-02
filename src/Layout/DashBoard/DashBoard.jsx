@@ -3,12 +3,12 @@ import Sidebar from '../../Component/DashBoard/Sidebar';
 import { useState } from 'react';
 
 const DashBoard = () => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
 
 
     return (
-        <div className='flex'>
+        <div className='flex selection:bg-[#262626] selection:text-white'>
             {/* left sidebar */}
             <div className=''>
                 <Sidebar open={open} setOpen={setOpen}  ></Sidebar>

@@ -21,7 +21,7 @@ const ProductCard = ({ productData }) => {
                         <p className="text-xl font-medium">${price}</p>
                     </div>
                     <div className="flex justify-between">
-                        <p className="text-xl">{name.slice(0, 20)}</p>
+                        <p className="text-xl">{name?.slice(0, 20)}</p>
                         <div className="flex justify-between mt-2">
                             <button><FaArrowRight></FaArrowRight></button>
                         </div>

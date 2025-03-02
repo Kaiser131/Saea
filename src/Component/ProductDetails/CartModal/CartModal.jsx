@@ -8,7 +8,7 @@ import {
 
 
 
-const CartModal = ({ open, setOpen, children }) => {
+const CartModal = ({ open, setOpen, children, }) => {
     const [scope, animate] = useAnimate();
     const [drawerRef, { height }] = useMeasure();
 

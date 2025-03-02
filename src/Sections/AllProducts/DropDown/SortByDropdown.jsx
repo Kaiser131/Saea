@@ -8,7 +8,6 @@ const SortByDropdown = ({ dropBtnText, setDropdownData, dropDownOptionsData, set
     const [open, setOpen] = useState(false);
 
     const handleDropDownOptionData = (text) => {
-
         setDropdownData(text);
         setOpen(false);
     };

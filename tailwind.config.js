@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        kaushan: ["Kaushan Script", "serif"],
+        kaushan: " 'Kaushan Script', serif",
         sirin: ["Sirin Stencil", "serif"],
         raleway: ["Raleway", "serif"],
         merriway: ["Merriweather", "serif"],

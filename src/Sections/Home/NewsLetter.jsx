@@ -5,7 +5,9 @@ const NewsLetter = () => {
     return (
         <div>
 
-            <TextBanner heading="Time for Something Special" subHeading="Join our newsletter for premium insights and unbeatable offers on luxury watches." ></TextBanner>
+            <div className="py-20">
+                <TextBanner heading="Time for Something Special" subHeading="Join our newsletter for premium insights and unbeatable offers on luxury watches." ></TextBanner>
+            </div>
 
             <section className="flex flex-col max-w-4xl mx-auto overflow-hidden bg-white rounded shadow-lg dark:bg-gray-800 md:flex-row md:h-48">
                 <div className="md:flex md:items-center md:justify-center md:w-1/2 md:bg-black md:dark:bg-gray-800">

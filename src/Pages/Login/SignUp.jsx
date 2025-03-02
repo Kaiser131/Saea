@@ -7,6 +7,7 @@ import SignButton from '../../Component/SignButton/SignButton';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import Loading from '../Loading/Loading';
 
 const SignUp = () => {
 
@@ -14,8 +15,12 @@ const SignUp = () => {
     const [passText, setPassText] = useState(true);
     const [confirmPassText, setConfirmPassText] = useState(true);
 
-    const { createUser, logOut, signInWithGoogle } = useAuth();
+    const { createUser, logOut, signInWithGoogle, loading } = useAuth();
     const navigate = useNavigate();
+
+    if (loading) {
+        return <Loading></Loading>;
+    }
 
     const handleSignUp = async (e) => {
         e.preventDefault();
