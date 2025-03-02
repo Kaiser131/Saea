@@ -10,6 +10,8 @@ import useAuth from "../../hooks/useAuth";
 import Loading from "../Loading/Loading";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import CloseModal from "../../Component/ProductDetails/CloseModal";
+import BuyModal from "../../Component/Shared/BuyModal";
+
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -123,8 +125,10 @@ const ProductDetails = () => {
                         {/* modals */}
 
                         {/* payment modal */}
-                        <BuyNowModal open={buyModal} setOpen={setBuyModal} product={watchData} />
 
+
+
+                        <BuyModal open={buyModal} setOpen={setBuyModal} product={watchData} />
                         {/* pop up modal after the cart adding */}
                         <CloseModal uxModal={uxModal} setUxModal={setUxModal} />
 
