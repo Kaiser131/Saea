@@ -36,7 +36,7 @@ const GuestCharts = () => {
 
             <div className="my-5 space-y-2">
                 <h1 className="text-3xl font-lexend">Purchase Overview $</h1>
-                <h1 className="text-xs md:text-base font-lexend">Number of Sales: 5000 $</h1>
+                <h1 className="text-xs md:text-base font-lexend">Purchased :  5000 $</h1>
             </div>
             <div>
                 <LineChart width={chartSize.width} height={chartSize.height} data={salesData}>

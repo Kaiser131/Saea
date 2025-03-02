@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaUser } from "react-icons/fa";
 import { Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 
 const AdminCharts = () => {
@@ -37,8 +38,8 @@ const AdminCharts = () => {
         <div>
 
             <div className="my-5 space-y-2">
-                <h1 className="text-3xl font-lexend">Sales Overview</h1>
-                <h1 className="text-xs md:text-base font-lexend">Number of Sales: 5000$</h1>
+                <h1 className="text-3xl font-lexend">Users Overview</h1>
+                <h1 className="text-xs md:text-base font-lexend">Number of Users: 1285 <FaUser /> </h1>
             </div>
             <div>
                 <LineChart width={chartSize.width} height={chartSize.height} data={salesData}>

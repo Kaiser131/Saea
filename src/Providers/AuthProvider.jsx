@@ -34,12 +34,13 @@ const AuthProvider = ({ children }) => {
             image: user?.photoURL,
             email: user?.email,
             status: "Verified",
-            role: 'Guest'
+            role: 'guest'
         };
 
-        const { data } = await axios.put(`http://localhost:5000/usersData`, currentUser);
+        const { data } = await axios.put(`${import.meta.env.VITE_SERVER_LINK}/usersData`, currentUser);
         return data;
     };
+
 
 
 

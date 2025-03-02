@@ -36,7 +36,7 @@ const HorizontalScrollCarousel = () => {
 
             <div className="sticky top-0 flex h-screen items-center overflow-hidden">
                 <motion.div style={{ x }} className="flex gap-4">
-                    {watch.slice(10, 17).map(data => <HorizonCard key={data._id} newArriveData={data} ></HorizonCard>)}
+                    {watch?.slice(10, 17).map(data => <HorizonCard key={data._id} newArriveData={data} ></HorizonCard>)}
 
 
                 </motion.div>

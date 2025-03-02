@@ -3,9 +3,19 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import HostDashboard from "./HostDashboard";
 import GuestDashboard from "./GuestDashboard";
 import AdminDashboard from './AdminDashboard';
+import useAuth from '../../hooks/useAuth';
+import Loading from '../Loading/Loading';
+import useRole from '../../hooks/useRole';
 
 const DashboardHome = () => {
 
+    const { loading } = useAuth();
+
+
+    const { role, isLoading } = useRole();
+
+
+    if (loading || isLoading) return <Loading />;
 
     return (
         <div>
@@ -13,9 +23,11 @@ const DashboardHome = () => {
                 setImage(URL.createObjectURL(e.target.files[0]));
             }} id="" /> */}
 
-            {/* <HostDashboard /> */}
-            <GuestDashboard />
-            {/* <AdminDashboard /> */}
+            {role === 'host' && <HostDashboard />}
+            {role === 'guest' && <GuestDashboard />}
+            {role === 'admin' && <AdminDashboard />}
+
+
 
         </div>
     );

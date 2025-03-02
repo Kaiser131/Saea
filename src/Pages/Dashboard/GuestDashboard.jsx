@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ToDoHeader from "../../Component/Shared/ToDo/ToDoHeader";
 import { motion } from 'framer-motion';
 import useAuth from "../../hooks/useAuth";
@@ -16,6 +16,14 @@ const GuestDashboard = () => {
 
     const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
+
+    const [date, setDate] = useState("");
+
+    useEffect(() => {
+        const today = new Date();
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        setDate(today.toLocaleDateString("en-US", options));
+    }, []);
 
     const [todos, setTodos] = useState([]);
 
@@ -58,19 +66,19 @@ const GuestDashboard = () => {
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max-h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Total Purchase</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{guestData?.totalPurchase} <FaBoxOpen /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                         {/* total sell */}
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max:h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Total Item</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{guestData?.totalItem} <FaOpencart /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                         {/* total revenue */}
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max:h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Total Spent...</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{guestData?.totalSpent} <FaDollarSign /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                     </div>
 

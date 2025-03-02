@@ -5,7 +5,7 @@ import ToDoSubmit from "../../Component/Shared/ToDo/ToDoSubmit";
 import ToDoHeader from "../../Component/Shared/ToDo/ToDoHeader";
 import { FaBoxOpen, FaHouseUser, FaUser, FaUserCheck } from "react-icons/fa";
 import Loading from "../Loading/Loading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { motion } from 'framer-motion';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -17,8 +17,16 @@ const AdminDashboard = () => {
     const { user, loading } = useAuth();
 
     const [todos, setTodos] = useState([]);
-
     const axiosSecure = useAxiosSecure();
+
+    const [date, setDate] = useState("");
+
+    useEffect(() => {
+        const today = new Date();
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        setDate(today.toLocaleDateString("en-US", options));
+    }, []);
+
 
     const handleCheck = (id) => {
         setTodos((pv) =>
@@ -58,31 +66,31 @@ const AdminDashboard = () => {
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max-h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Total User</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{adminData?.totalUsers} <FaUser /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                         {/* total sell */}
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max:h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Admin</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{adminData?.totalAdmin} <FaHouseUser /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                         {/* total revenue */}
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max:h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Host</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{adminData?.totalHost} <FaUserCheck /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                         {/* Gusest */}
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max:h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Guest</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{adminData?.totalGuest} <FaUserCheck /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                         {/* currently revenue goal*/}
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max:h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Total Revenue</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{adminData?.totalRevenue} $</p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                     </div>
                     {/* Host Data */}
@@ -90,7 +98,7 @@ const AdminDashboard = () => {
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max-h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Total Product</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{adminData?.totalProduct} <FaBoxOpen /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
 
                         <Link to='/dashboard/profile'>

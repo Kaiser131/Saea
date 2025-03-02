@@ -8,7 +8,7 @@ import { FaDollarSign } from "react-icons/fa";
 import ToDoHeader from "../../Component/Shared/ToDo/ToDoHeader";
 import ToDoList from "../../Component/Shared/ToDo/ToDoList";
 import ToDoSubmit from "../../Component/Shared/ToDo/ToDoSubmit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HostCharts from "../../Component/Shared/Charts/HostCharts";
 import { FiClock, FiTrash2 } from "react-icons/fi";
 import { motion } from 'framer-motion';
@@ -18,6 +18,14 @@ const HostDashboard = () => {
 
     const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
+
+    const [date, setDate] = useState("");
+
+    useEffect(() => {
+        const today = new Date();
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        setDate(today.toLocaleDateString("en-US", options));
+    }, []);
 
     const { data: hostData = [], isLoading } = useQuery({
         queryKey: ['hostDashboard', user?.email],
@@ -60,25 +68,25 @@ const HostDashboard = () => {
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max-h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Active Product</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{hostData?.totalProduct} <FaBoxOpen /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                         {/* total sell */}
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max:h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Total Sell</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{hostData?.totalSell} <FaOpencart /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                         {/* total revenue */}
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max:h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Total Revenue</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">{hostData?.totalRevenue} <FaDollarSign /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                         {/* currently revenue goal*/}
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max:h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Revenue Goal</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">71 %</p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                     </div>
                     {/* Host Data */}
@@ -86,7 +94,7 @@ const HostDashboard = () => {
                         <div className="p-5 bg-[#262626] space-y-1 font-sirin md:max-h-36 max-w-44 rounded shadow-2xl">
                             <p className="">Total Product</p>
                             <p className=" text-3xl md:text-4xl font-bold flex items-center gap-3 ">25 <FaBoxOpen /> </p>
-                            <p className="">27/03/2025</p>
+                            <p className="">{date}</p>
                         </div>
                         <Link to='/dashboard/profile'>
                             <div className="md:flex md:flex-col hidden justify-center items-center space-y-8">

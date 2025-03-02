@@ -34,6 +34,7 @@ const AllUsers = () => {
         onSuccess: () => {
             toast.success('Role Updated !');
             refetch();
+            setRole(null);
         }
     });
 
