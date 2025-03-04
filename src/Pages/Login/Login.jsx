@@ -2,7 +2,7 @@ import bg from '/images/map.webp';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook, FaLock, FaLockOpen } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa6';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import SignButton from '../../Component/SignButton/SignButton';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
@@ -14,10 +14,11 @@ const Login = () => {
     const [passText, setPassText] = useState(true);
     const navigate = useNavigate();
 
+
     const location = useLocation();
     const from = location?.state || '/';
 
-    const { login, signInWithGoogle, loading } = useAuth();
+    const { login, signInWithGoogle, loading, user, setLoading } = useAuth();
     if (loading) {
         return <Loading></Loading>;
     }
@@ -73,9 +74,11 @@ const Login = () => {
 
     const handleGoogleLogin = async () => {
         await signInWithGoogle();
+        setLoading(false);
         navigate('/');
     };
 
+    if (user) return <Navigate to='/' />;
 
     return (
         <div

@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../Component/Shared/NavBar";
 import Footer from "../Component/Shared/Footer";
+import ScrollTop from "../Component/Shared/ScrollTop/ScrollTop";
 
 const Main = () => {
 
@@ -8,9 +9,11 @@ const Main = () => {
 
     return (
         <div className="selection:bg-[#262626] selection:text-white">
-            <NavBar></NavBar>
-            <Outlet></Outlet>
-            <Footer />
+            <ScrollTop>
+                <NavBar></NavBar>
+                <Outlet></Outlet>
+                <Footer />
+            </ScrollTop>
         </div>
     );
 };

@@ -7,7 +7,7 @@ const WhiteFillupBtn = ({ text, size = 60 }) => {
 
     return (
         <div>
-            <div className='blackFilledButtonContainer'
+            <div className='blackFilledButtonContainer px-9 py-3 whitespace-nowrap'
                 onMouseEnter={(e) => setIsHover(true)}
                 onMouseLeave={(e) => setIsHover(false)}
             >

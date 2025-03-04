@@ -12,7 +12,6 @@ import { BsSmartwatch } from "react-icons/bs";
 import { MdSportsFootball } from "react-icons/md";
 import { TbPeace } from "react-icons/tb";
 
-
 // sortBy icons
 import { MdOutlineTurnSharpRight } from "react-icons/md";
 import { MdUTurnLeft } from "react-icons/md";
@@ -96,6 +95,7 @@ const AllProduct = () => {
 
     return (
         <div className="relative min-h-screen w-full ">
+
 
             <div className="pt-24">
                 {/* heading text */}

@@ -133,7 +133,6 @@ body {
         cursor: pointer;
         background-color: #D8D8D8;
         border-radius: 2px;
-        padding: 12px 36px;
         overflow: clip;
         border: 1px black solid;
     }
@@ -146,7 +145,6 @@ body {
         cursor: pointer;
         background-color: black;
         border-radius: 2px;
-        padding: 12px 36px;
         overflow: clip;
         border: 1px solid black;
     }

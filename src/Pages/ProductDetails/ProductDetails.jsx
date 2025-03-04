@@ -73,7 +73,7 @@ const ProductDetails = () => {
 
 
     return (
-        <div className="h-screen w-full lg:px-10 py-[86px] relative">
+        <div className=" w-full lg:px-10 py-[86px]">
 
             <div className=" border-t-[1px] flex flex-col lg:flex-row border-[#BEBEBE] lg:p-6 gap-10 ">
 
@@ -114,13 +114,16 @@ const ProductDetails = () => {
 
                     {/* Button div stays at bottom */}
                     <div className="flex gap-5 ">
-                        <span onClick={() => setOpen(true)}>
-                            <FillUpBtn text='Add to Cart' color='white' />
-                        </span>
 
-                        <span onClick={() => handleBuy(watchData)}>
-                            <WhiteFillupBtn text='Buy Now' />
-                        </span>
+                        <div className="flex gap-5">
+                            <span onClick={() => setOpen(true)}>
+                                <FillUpBtn text='Cart' color='white' />
+                            </span>
+
+                            <span onClick={() => handleBuy(watchData)}>
+                                <WhiteFillupBtn text='Buy Now' />
+                            </span>
+                        </div>
 
                         {/* modals */}
 

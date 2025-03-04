@@ -4,15 +4,17 @@ import { Link, useLocation } from "react-router-dom";
 import { useWindowScroll } from "react-use";
 import { FaOpencart } from "react-icons/fa6";
 import { motion } from 'framer-motion';
+import useAuth from "../../hooks/useAuth";
 
 
 const NavBar = () => {
+
+    const { user } = useAuth();
 
     const navContainerRef = useRef(null);
     const navItems = [
         { name: 'Home', destination: '/' },
         { name: 'Products', destination: '/products' },
-        { name: 'Menu', destination: 'dashboard' },
     ];
 
 
@@ -75,7 +77,6 @@ const NavBar = () => {
                 <nav className={`flex size-full items-center justify-between p-4 ${location?.pathname !== '/' && currentScrollY === 0 ? 'bg-black bg-opacity-30 rounded-lg' : ''} `}>
 
                     <div className="flex items-center gap-7">
-                        {/* <img src="" alt="logo" className="w-10" /> */}
                         {
                             location?.pathname === '/' ?
                                 <Link to='/'><motion.button
@@ -124,7 +125,10 @@ const NavBar = () => {
                                 <Link className="nav-hover-btn" to='/dashboard'>Menu</Link>
 
                                 {/* cart button */}
-                                <Link className="nav-hover-btn" to='dashboard/myCart'><FaOpencart className="text-2xl md:text-4xl" /></Link>
+                                {user ?
+                                    <Link className="nav-hover-btn" to='dashboard/myCart'><FaOpencart className="text-2xl md:text-4xl" /></Link> :
+                                    <Link to='/login' className="nav-hover-btn" >login</Link>
+                                }
                                 {/* music buttton */}
                                 <button className="ml-10 flex items-center space-x-0.5" onClick={toggleAudio}>
                                     <audio src="/audio/loop.mp3" ref={audioElementRef} className="hidden" loop />
@@ -150,8 +154,11 @@ const NavBar = () => {
                                 </div>
                                 <Link className="nav-hover-btn md:hidden" to='/dashboard'>Menu</Link>
 
-                                {/* cart button */}
-                                <Link className="nav-hover-btn" to='dashboard/myCart'><FaOpencart className="text-2xl md:text-4xl" /></Link>
+                                {user ?
+                                    <Link className="nav-hover-btn" to='dashboard/myCart'><FaOpencart className="text-2xl md:text-4xl" /></Link> :
+                                    <Link to='/login' className="nav-hover-btn" >login</Link>
+                                }
+
                                 {/* music buttton */}
                                 <button className="ml-10 flex items-center space-x-0.5" onClick={toggleAudio}>
                                     <audio src="/audio/loop.mp3" ref={audioElementRef} className="hidden" loop />

@@ -2,7 +2,7 @@ import { FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div className="pt-20">
+        <div className="">
             <footer className="flex justify-evenly sm:footer-horizontal bg-[#262626] text-neutral-content p-10">
                 <aside className="space-y-5">
                     <p className="text-4xl font-lexend">
