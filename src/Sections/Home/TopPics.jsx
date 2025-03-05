@@ -38,7 +38,7 @@ const TopPics = () => {
                         <h1 className="text-black uppercase font-sirin text-xs md:text-xl mb-3">Top Time Tellers</h1>
                         <div className=" w-24 h-[1px] bg-black mb-3"></div>
                     </div>
-                    <p className="hidden md:inline-flex gap-3">
+                    <div className="hidden md:inline-flex gap-3">
                         <ZoopText design='uppercase font-raleway text-xl md:text-3xl lg:text-4xl' >
                             Perfectly
                         </ZoopText>
@@ -52,7 +52,7 @@ const TopPics = () => {
                             admired.
                         </ZoopText>
 
-                    </p>
+                    </div>
 
                     <p className="md:hidden font-raleway text-2xl">Perfectly crafted, endlessly admired.</p>
 

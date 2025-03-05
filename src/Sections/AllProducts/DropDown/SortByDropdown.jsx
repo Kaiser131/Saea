@@ -44,7 +44,7 @@ const SortByDropdown = ({ dropBtnText, setDropdownData, dropDownOptionsData, set
                     onClick={() => setOpen((pv) => !pv)}
                     className="flex  font-lexend py-4 px-5 md:px-[70px]  items-center whitespace-nowrap  "
                 >
-                    <span className="font-light">{dropBtnText}</span>
+                    <span className="font-light text-black">{dropBtnText}</span>
                     <motion.span variants={iconVariants}>
                         <FiChevronDown />
                     </motion.span>

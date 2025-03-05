@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../../Component/DashBoard/Sidebar';
 import { useState } from 'react';
+import ScrollTop from '../../Component/Shared/ScrollTop/ScrollTop';
 
 const DashBoard = () => {
     const [open, setOpen] = useState(false);
@@ -15,7 +16,9 @@ const DashBoard = () => {
             </div>
             {/* outlets */}
             <div className={`${open ? 'w-[calc(100vw-208px)]' : 'w-[calc(100vw-40px)]'}`}>
-                <Outlet></Outlet>
+                <ScrollTop>
+                    <Outlet></Outlet>
+                </ScrollTop>
             </div>
         </div>
     );

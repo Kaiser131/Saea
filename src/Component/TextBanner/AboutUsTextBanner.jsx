@@ -19,7 +19,7 @@ const AboutUsTextBanner = ({ heading, subHeading, lowerHeading }) => {
                 initial="hidden"
                 whileInView="reveal"
                 transition={{ staggerChildren: 0.1 }}
-                className="font-lexend mt-5 text-4xl  uppercase text-center">
+                className="font-lexend mt-5 text-4xl text-black  uppercase text-center">
 
                 {headingChars.map((char, idx) => (
                     <motion.span key={idx} transition={{ duration: 0.5 }} variants={charVariants}>
@@ -33,7 +33,7 @@ const AboutUsTextBanner = ({ heading, subHeading, lowerHeading }) => {
                 initial="hidden"
                 whileInView="reveal"
                 transition={{ staggerChildren: 0.025 }}
-                className="absolute font-sirin top-full mt-5 left-1/2 w-full max-w-96 -translate-x-1/2 text-center text-lg md:max-w-[34rem] ">
+                className="absolute font-sirin top-full text-black mt-5 left-1/2 w-full max-w-96 -translate-x-1/2 text-center text-lg md:max-w-[34rem] ">
 
 
                 {subHeadingChars.map((char, idx) => (
@@ -49,7 +49,7 @@ const AboutUsTextBanner = ({ heading, subHeading, lowerHeading }) => {
                 initial="hidden"
                 whileInView="reveal"
                 transition={{ staggerChildren: 0.015 }}
-                className="about-subtext font-sirin">
+                className="about-subtext font-sirin text-black">
 
                 {lowerHeadingChars.map((char, idx) => (
                     <motion.span key={idx} transition={{ duration: .35 }} variants={charVariants}>

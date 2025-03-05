@@ -72,7 +72,7 @@ const Cart = () => {
 
                     {/* heading div */}
                     <div>
-                        <div className="flex px-5 justify-between py-5 mx-10 my-5 border-b border-black md:px-10">
+                        <div className="flex px-5 justify-between py-5 mx-10 my-5 text-black border-b border-black md:px-10">
                             <h1 className="font-lexend text-xl md:text-3xl font-bold">Shopping Cart</h1>
                             <p className="font-lexend text-xs md:text-base">{data.length} Items</p>
                         </div>
@@ -84,19 +84,19 @@ const Cart = () => {
                     <div className=' max-w-[400px] my-10 px-5 md:p-0 lg:max-w-[800px] mx-auto'>
                         <table className="border-collapse w-full">
                             <thead className="uppercase w-full">
-                                <tr className="w-full">
-                                    <th className="md:py-4 text-xs font-semibold font-raleway text-left w-[16.6%]">Product</th>
-                                    <th className="md:py-4 text-xs font-semibold font-raleway w-[16.6%]"></th>
-                                    <th className="md:py-4 text-xs font-semibold font-raleway w-[16.6%]">Quantity</th>
-                                    <th className="md:py-4 text-xs font-semibold font-raleway w-[16.6%]">Price</th>
-                                    <th className="md:py-4 text-xs font-semibold font-raleway w-[16.6%] md-lg-only">Total</th>
-                                    <th className="md:py-4 text-xs font-semibold font-raleway w-[16.6%]">Action</th>
+                                <tr className="w-full text-black">
+                                    <th className="md:py-4  text-xs font-semibold font-raleway text-left w-[16.6%]">Product</th>
+                                    <th className="md:py-4  text-xs font-semibold font-raleway w-[16.6%]"></th>
+                                    <th className="md:py-4  text-xs font-semibold font-raleway w-[16.6%]">Quantity</th>
+                                    <th className="md:py-4  text-xs font-semibold font-raleway w-[16.6%]">Price</th>
+                                    <th className="md:py-4  text-xs font-semibold font-raleway w-[16.6%] md-lg-only">Total</th>
+                                    <th className="md:py-4  text-xs font-semibold font-raleway w-[16.6%]">Action</th>
                                 </tr>
                             </thead>
 
                             {data.map((product) => (
                                 <tbody key={product._id} className="border-b border-black w-full">
-                                    <tr className="w-full">
+                                    <tr className="w-full text-black">
                                         <td className="py-4 w-[16.6%]">
                                             <div
                                                 className="size-10 md:size-20 bg-center bg-cover rounded"

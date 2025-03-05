@@ -14,7 +14,7 @@ const HorizontalScrollCarousel = () => {
 
     const axiosCommon = useAxiosCommon();
 
-    const x = useTransform(scrollYProgress, [0, 1], ["5%", "-50%"]);
+    const x = useTransform(scrollYProgress, [0, 1], ["5%", "-89%"]);
 
     const { data: watch = [] } = useQuery({
         queryKey: ['newArrival'],
@@ -31,7 +31,7 @@ const HorizontalScrollCarousel = () => {
 
 
             <div className="absolute left-1/2 md:max-w-[500px] transform -translate-x-1/2 top-10">
-                <TextBanner heading="New Arrival..." subHeading="Our latest watches are here! Crafted to elevate your style, these new arrivals bring sophistication and cutting-edge designs to your wrist." />
+                <TextBanner heading="New Arrival..." subHeading="Our latest watches are here! Crafted to elevate your style..." />
             </div>
 
             <div className="sticky top-0 flex h-screen items-center overflow-hidden">

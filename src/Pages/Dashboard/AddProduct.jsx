@@ -69,7 +69,7 @@ const AddProduct = () => {
     return (
         <div className=" min-h-screen min-w-full">
 
-            <div className="">
+            <div className="text-black">
                 <div className="border-b border-black">
                     <h1 className="text-4xl my-10 font-lexend text-center">Submit Product Details</h1>
                 </div>
@@ -79,7 +79,7 @@ const AddProduct = () => {
 
 
                     {/* 1stdiv */}
-                    <div className="flex  justify-between px-5 gap-10">
+                    <div className="flex  justify-between px-5 gap-5 md:gap-10">
 
                         <div className=" w-1/2">
                             <label className="block text-2xl font-lexend">Name</label>
@@ -95,7 +95,7 @@ const AddProduct = () => {
 
 
                     {/* 2nd div */}
-                    <div className="flex  justify-between px-5 gap-10">
+                    <div className="flex  justify-between px-5 gap-5 md:gap-10">
                         <div className=" w-1/2">
                             <label className="block text-2xl font-lexend">Brand</label>
                             <input required className="bg-[#D8D8D8] w-3/4 my-5 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="brand" placeholder="brand" />
@@ -108,7 +108,7 @@ const AddProduct = () => {
                     </div>
 
                     {/* 3rd div */}
-                    <div className="flex  justify-between px-5 gap-10">
+                    <div className="flex  justify-between px-5 gap-5 md:gap-10">
                         <div className=" w-1/2">
                             <label className="block text-2xl font-lexend">Price</label>
                             <input required min={0} className="bg-[#D8D8D8] w-3/4 outline-none placeholder:text-gray-500 border-b border-black" type="number" name="price" placeholder="price" />
@@ -122,7 +122,7 @@ const AddProduct = () => {
 
 
                     {/* 4th div */}
-                    <div className="flex  justify-between px-5 gap-10">
+                    <div className="flex  justify-between px-5 gap-5 md:gap-10">
                         <div className=" w-1/2">
                             <label className="block text-2xl font-lexend">material</label>
                             <input required min={0} className="bg-[#D8D8D8] w-3/4 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="material" placeholder="material" />
@@ -136,7 +136,7 @@ const AddProduct = () => {
 
 
                     {/* 5th div */}
-                    <div className="flex  justify-between px-5 gap-10">
+                    <div className="flex  justify-between px-5 gap-5 md:gap-10">
                         <div className=" w-1/2">
                             <label className="block text-2xl font-lexend">SKU</label>
                             <input required className="bg-[#D8D8D8] w-3/4 my-5 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="SKU" placeholder="resistance" />

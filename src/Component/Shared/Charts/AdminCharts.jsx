@@ -9,7 +9,7 @@ const AdminCharts = () => {
     useEffect(() => {
         const updateSize = () => {
             if (window.innerWidth < 640) {
-                setChartSize({ width: 300, height: 250 });
+                setChartSize({ width: 250, height: 250 });
             } else if (window.innerWidth < 1024) {
                 setChartSize({ width: 500, height: 350 });
             } else {

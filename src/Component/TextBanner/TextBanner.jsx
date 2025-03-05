@@ -23,7 +23,7 @@ const TextBanner = ({ heading = '', subHeading = '' }) => {
                     initial="hidden"
                     whileInView="reveal"
                     transition={{ staggerChildren: 0.1 }}
-                    className="text-3xl md:text-4xl font-lexend pb-4"
+                    className="text-3xl md:text-4xl text-black font-lexend pb-4"
                 >{headingChars.map((char, idx) => (
                     <motion.span key={idx} transition={{ duration: 0.5 }} variants={charVariants}>
                         {char}
@@ -34,7 +34,7 @@ const TextBanner = ({ heading = '', subHeading = '' }) => {
                     initial="hidden"
                     whileInView="reveal"
                     transition={{ staggerChildren: 0.015 }}
-                    className="font-sirin text-white text-sm md:text-base text-shadow font-medium "
+                    className="font-sirin text-white  text-sm md:text-base text-shadow font-medium "
                 >
                     {subHeadingChars.map((char, idx) => (
                         <motion.span key={idx} transition={{ duration: .35 }} variants={charVariants}>

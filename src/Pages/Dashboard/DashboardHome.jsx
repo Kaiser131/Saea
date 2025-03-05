@@ -18,7 +18,7 @@ const DashboardHome = () => {
     if (loading || isLoading) return <Loading />;
 
     return (
-        <div>
+        <div className='text-black'>
             {/* <input type="file" name="" onChange={e => {
                 setImage(URL.createObjectURL(e.target.files[0]));
             }} id="" /> */}

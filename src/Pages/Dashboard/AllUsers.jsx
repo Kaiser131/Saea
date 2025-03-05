@@ -70,7 +70,7 @@ const AllUsers = () => {
                                 <th className="text-xs font-semibold font-raleway w-[12.28%]">status</th>
                                 <th className="text-xs font-semibold font-raleway w-[12.28%]">update</th>
                                 <th className="text-xs font-semibold font-raleway w-[12.28%]">action</th>
-                                <th className="text-xs font-semibold font-raleway w-[12.28%]"></th>
+                                <th className="text-xs font-semibold font-raleway w-[12.28%] hidden md:block"></th>
                             </tr>
                         </thead>
 
@@ -81,7 +81,7 @@ const AllUsers = () => {
                                     <td className="pl-5">
                                         <img src={user?.image} className="mx-auto hidden md:block size-12 rounded" loading="lazy" alt="" />
                                     </td>
-                                    <td className="text-center py-4 ">{user?.email}</td>
+                                    <td className="text-center py-4 break-all md:whitespace-nowrap">{user?.email}</td>
                                     <td className={`text-center py-4 
                                         ${user?.role === 'guest' ? 'text-green-600' : 'text-blue-600'} 
                                         ${user?.role === 'admin' && 'text-red-700'} `}>{user?.role}</td>
@@ -105,7 +105,7 @@ const AllUsers = () => {
                                         </button>
                                     </td>
 
-                                    <td className="text-center py-4 text-2xl">
+                                    <td className="text-center py-4 text-2xl hidden md:block">
                                         <button><RxCross2 /></button>
                                     </td>
                                 </tr>

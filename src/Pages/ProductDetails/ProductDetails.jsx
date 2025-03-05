@@ -86,7 +86,7 @@ const ProductDetails = () => {
                     />
                 </div>
 
-                <div className="w-1/2 flex flex-col h-full p-10 md:p-7">
+                <div className="w-1/2 flex text-black flex-col h-full p-10 md:p-7">
                     <h1 className="text-4xl font-lexend font-light my-10">{name}</h1>
                     <p className="font-lexend">{details}</p>
                     <p className="font-lexend text-3xl font-extralight my-3">{price}$</p>
