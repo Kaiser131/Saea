@@ -50,7 +50,7 @@ const AllProducts = () => {
 
             <table className="max-w-[1000px] w-full mx-auto divide-y  text-black">
 
-                <thead className="bg-[#d1cfcf] font-lexend dark:bg-gray-800">
+                <thead className="bg-[#d1cfcf] font-lexend ">
                     <tr>
 
                         <th scope="col">
@@ -90,7 +90,7 @@ const AllProducts = () => {
                 </thead>
 
                 {data.map(tabData => (
-                    <tbody key={tabData?._id} className="bg-[#d1cfcf] divide-y divide-gray-200 dark dark:bg-gray-900">
+                    <tbody key={tabData?._id} className="bg-[#d1cfcf]">
 
                         <tr className="">
 
