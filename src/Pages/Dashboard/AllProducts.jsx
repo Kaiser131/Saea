@@ -131,8 +131,8 @@ const AllProducts = () => {
 
                             <td className="px-4 py-4 text-sm">
                                 <div className="flex items-center gap-x-6">
-                                    <button onClick={() => handleDelete(tabData?._id)} className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
-                                        <FaRegTrashAlt className="text-sm md:text-xl" />
+                                    <button onClick={() => handleDelete(tabData?._id)} className=" transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                                        <FaRegTrashAlt className="text-sm text-black md:text-xl" />
                                     </button>
                                     <button className="text-gray-500 hidden md:block transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                                         <svg
