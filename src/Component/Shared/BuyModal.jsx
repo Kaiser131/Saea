@@ -55,7 +55,7 @@ const BuyModal = ({ open, setOpen, product }) => {
     if (loading) return <Loading />;
     return (
         <div>
-            <Dialog open={open} as="div" className="relative z-10 focus:outline-none" onClose={() => setOpen(!open)} __demoMode>
+            <Dialog open={open} as="div" className="relative z-10 focus:outline-none text-black" onClose={() => setOpen(!open)} __demoMode>
                 <div className="fixed inset-0 z-10 w-screen overflow-y-auto bg-[#8C8C8C] bg-opacity-80 ">
                     <div className="flex min-h-full items-center justify-center p-4">
                         <DialogPanel

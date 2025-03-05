@@ -197,7 +197,9 @@ const ProductDetails = () => {
                                     handleCart();
                                     setUxModal(true);
                                 }}>
-                                    <WhiteFillupBtn text="Add" size={226} />
+                                    <button className="w-full disabled:cursor-not-allowed" disabled={quantity === 0} >
+                                        <WhiteFillupBtn text="Add" size={226} />
+                                    </button>
                                 </div>
 
                             </div>
