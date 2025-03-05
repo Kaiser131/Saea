@@ -45,7 +45,7 @@ const AllProducts = () => {
         <div>
 
             <div>
-                <h1 className="text-2xl md:text-4xl font-lexend text-center py-10 ">Total Items {data?.length}</h1>
+                <h1 className="text-2xl md:text-4xl text-black font-lexend text-center py-10 ">Total Items {data?.length}</h1>
             </div>
 
             <table className="max-w-[1000px] w-full mx-auto divide-y  text-black">
