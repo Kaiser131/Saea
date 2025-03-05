@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Loading from "../Loading/Loading";
 import toast from "react-hot-toast";
+import CartEmptyPage from "./CartEmptyPage";
 
 const AllProducts = () => {
 
@@ -40,9 +41,10 @@ const AllProducts = () => {
 
 
     if (loading, isLoading) return <Loading />;
+    if (data?.length === 0) return <CartEmptyPage />;
 
     return (
-        <div>
+        <div className="bg-[#d8d8d8]">
 
             <div>
                 <h1 className="text-2xl md:text-4xl text-black font-lexend text-center py-10 ">Total Items {data?.length}</h1>
@@ -100,10 +102,10 @@ const AllProducts = () => {
                                     className="size-9 md:size-20 bg-cover bg-center m-2 md:m-5 rounded-sm" />
                             </td>
 
-                            <td className="py-4 text-sm font-medium">
+                            <td className="">
                                 <div className="flex flex-col font-lexend py-1">
-                                    <h2 className="text-xs md:text-xl font-normal">{tabData?.name}</h2>
-                                    <h2 className="text-xs font-normal">{tabData?.category}</h2>
+                                    <h2 className="text-[10px] md:text-xl break-all">{tabData?.name}</h2>
+                                    <h2 className="text-[8px] font-normal">{tabData?.category}</h2>
                                 </div>
                             </td>
 
@@ -114,7 +116,7 @@ const AllProducts = () => {
                             </td>
 
                             <td className="px-2 md:px-4 py-4">
-                                <div className="text-xs md:text-sm break-all">
+                                <div className="text-[8px] md:text-sm break-all">
                                     {tabData?.submittedBy}
                                 </div>
                             </td>

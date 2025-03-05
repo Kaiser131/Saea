@@ -15,6 +15,7 @@ const NavBar = () => {
     const navItems = [
         { name: 'Home', destination: '/' },
         { name: 'Products', destination: '/products' },
+        { name: 'Menu', destination: 'dashboard' },
     ];
 
 
@@ -122,7 +123,8 @@ const NavBar = () => {
                                         </Link>
                                     ))}
                                 </div>
-                                <Link className="nav-hover-btn" to='/dashboard'>Menu</Link>
+
+                                <Link className="nav-hover-btn md:hidden" to='/dashboard'>Menu</Link>
 
                                 {/* cart button */}
                                 {user ?
@@ -152,6 +154,7 @@ const NavBar = () => {
                                         </Link>
                                     ))}
                                 </div>
+
                                 <Link className="nav-hover-btn md:hidden" to='/dashboard'>Menu</Link>
 
                                 {user ?
