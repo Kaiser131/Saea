@@ -54,7 +54,7 @@ const AllUsers = () => {
 
 
     return (
-        <div className="min-h-screen w-full">
+        <div className="min-h-screen w-full text-black">
 
             <div>
                 <h1 className="text-2xl md:text-4xl font-lexend text-center py-10 ">Manage Users</h1>
