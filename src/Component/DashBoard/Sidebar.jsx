@@ -8,6 +8,7 @@ import { CgProfile } from "react-icons/cg";
 import { FaBoxOpen } from "react-icons/fa";
 import { MdWatch } from "react-icons/md";
 import { IoPower } from "react-icons/io5";
+import { FaDropbox } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 
@@ -88,6 +89,14 @@ const Sidebar = ({ open, setOpen }) => {
                         setSelected={setSelected}
                         open={open}
                         location='allUsers'
+                    />
+                    <Option
+                        Icon={FaDropbox}
+                        title="Products"
+                        selected={selected}
+                        setSelected={setSelected}
+                        open={open}
+                        location='allProduct'
                     />
                 </div>
 

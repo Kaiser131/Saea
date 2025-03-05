@@ -16,6 +16,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers";
 import AddProduct from "../Pages/Dashboard/AddProduct";
 import PrivateRoute from "./PrivateRoute";
 import AnimateRoutes from "../Pages/Animate/AnimateRoutes";
+import AllProducts from "../Pages/Dashboard/AllProducts";
 
 
 
@@ -101,6 +102,15 @@ const router = createBrowserRouter([
                     <PrivateRoute>
                         <AnimateRoutes>
                             <AddProduct />
+                        </AnimateRoutes>
+                    </PrivateRoute>
+            },
+            {
+                path: 'allProduct',
+                element:
+                    <PrivateRoute>
+                        <AnimateRoutes>
+                            <AllProducts />
                         </AnimateRoutes>
                     </PrivateRoute>
             },

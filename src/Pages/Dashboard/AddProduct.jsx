@@ -1,6 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
 import WhiteFillupBtn from "../../Component/Shared/WhiteFillupBtn";
-import axios from "axios";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { imageUpload } from "../../Utils/imageUpload";
@@ -31,7 +30,7 @@ const AddProduct = () => {
         const name = form.name.value;
         const brand = form.brand.value;
         const warranty = form.warranty.value;
-        const price = form.price.value;
+        const price = parseInt(form.price.value);
         const availability = form.availability.value;
         const material = form.material.value;
         const waterResistance = form.waterResistance.value;
@@ -41,8 +40,6 @@ const AddProduct = () => {
         const image = form.image.files[0];
 
         const imageUrl = await imageUpload(image);
-
-        console.log(imageUrl);
 
         const addData = {
             image: imageUrl,
@@ -59,9 +56,8 @@ const AddProduct = () => {
             submittedBy: user?.email
         };
 
-        console.log(addData);
-
         await mutateAsync(addData);
+        form.reset();
 
     };
 
@@ -71,24 +67,24 @@ const AddProduct = () => {
 
             <div className="text-black">
                 <div className="border-b border-black">
-                    <h1 className="text-4xl my-10 font-lexend text-center">Submit Product Details</h1>
+                    <h1 className="text-4xl my-10 font-lexend text-center">Submit Product</h1>
                 </div>
 
                 {/* form */}
-                <form onSubmit={handleSubmit} className="flex   flex-col py-10 px-5 max-w-[1000px] mx-auto capitalize gap-10">
+                <form onSubmit={handleSubmit} className="flex  flex-col py-10 px-5 max-w-[1000px] mx-auto capitalize gap-10">
 
 
                     {/* 1stdiv */}
                     <div className="flex  justify-between px-5 gap-5 md:gap-10">
 
                         <div className=" w-1/2">
-                            <label className="block text-2xl font-lexend">Name</label>
+                            <label className="block text-xs md:text-2xl font-lexend">Name</label>
                             <input required className="bg-[#D8D8D8] w-3/4 my-5 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="name" placeholder="name" />
                         </div>
 
                         <div className=" w-1/2 ">
-                            <label className="block text-xl dark:text-gray-300">Image</label>
-                            <input required type="file" name="image" className="block w-2/3 px-3 py-2 mt-2 text-sm text-gray-600 border border-gray-400 rounded-lg file:bg-[#BEBEBE] file:rounded-lg file:border-none file:text-gray-600  " />
+                            <label className="block text-xs md:text-xl dark:text-gray-300">Image</label>
+                            <input required type="file" name="image" className="block w-full md:w-3/4 px-3 py-2 mt-2 text-sm text-gray-600 border border-gray-400 rounded-lg file:bg-[#BEBEBE] file:rounded-lg file:border-none file:text-gray-600  " />
                         </div>
 
                     </div>
@@ -97,12 +93,12 @@ const AddProduct = () => {
                     {/* 2nd div */}
                     <div className="flex  justify-between px-5 gap-5 md:gap-10">
                         <div className=" w-1/2">
-                            <label className="block text-2xl font-lexend">Brand</label>
+                            <label className="block text-xs md:text-2xl font-lexend">Brand</label>
                             <input required className="bg-[#D8D8D8] w-3/4 my-5 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="brand" placeholder="brand" />
                         </div>
 
                         <div className=" w-1/2">
-                            <label className="block text-2xl font-lexend">Warranty</label>
+                            <label className="block text-xs md:text-2xl font-lexend">Warranty</label>
                             <input required className="bg-[#D8D8D8] w-3/4 my-5 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="warranty" placeholder="warranty" />
                         </div>
                     </div>
@@ -110,12 +106,12 @@ const AddProduct = () => {
                     {/* 3rd div */}
                     <div className="flex  justify-between px-5 gap-5 md:gap-10">
                         <div className=" w-1/2">
-                            <label className="block text-2xl font-lexend">Price</label>
+                            <label className="block text-xs md:text-2xl font-lexend">Price</label>
                             <input required min={0} className="bg-[#D8D8D8] w-3/4 outline-none placeholder:text-gray-500 border-b border-black" type="number" name="price" placeholder="price" />
                         </div>
 
                         <div className=" w-1/2">
-                            <label className="block text-2xl font-lexend">availability</label>
+                            <label className="block text-xs md:text-2xl font-lexend">availability</label>
                             <input required className="bg-[#D8D8D8] w-3/4 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="availability" placeholder="availability" />
                         </div>
                     </div>
@@ -124,12 +120,12 @@ const AddProduct = () => {
                     {/* 4th div */}
                     <div className="flex  justify-between px-5 gap-5 md:gap-10">
                         <div className=" w-1/2">
-                            <label className="block text-2xl font-lexend">material</label>
+                            <label className="block text-xs md:text-2xl font-lexend">material</label>
                             <input required min={0} className="bg-[#D8D8D8] w-3/4 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="material" placeholder="material" />
                         </div>
 
                         <div className=" w-1/2">
-                            <label className="block text-2xl font-lexend">Durability</label>
+                            <label className="block text-xs md:text-2xl font-lexend">Durability</label>
                             <input required className="bg-[#D8D8D8] w-3/4 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="waterResistance" placeholder="Resistance" />
                         </div>
                     </div>
@@ -138,13 +134,13 @@ const AddProduct = () => {
                     {/* 5th div */}
                     <div className="flex  justify-between px-5 gap-5 md:gap-10">
                         <div className=" w-1/2">
-                            <label className="block text-2xl font-lexend">SKU</label>
+                            <label className="block text-xs md:text-2xl font-lexend">SKU</label>
                             <input required className="bg-[#D8D8D8] w-3/4 my-5 outline-none placeholder:text-gray-500 border-b border-black" type="text" name="SKU" placeholder="resistance" />
                         </div>
 
                         <div className=" w-1/2">
-                            <label className="block text-2xl font-lexend">Category</label>
-                            <select required className="px-5 cursor-pointer h-10 border-b appearance-none border-black rounded-sm bg-[#D8D8D8] outline-none" name="category" id="">
+                            <label className="block text-xs md:text-2xl font-lexend">Category</label>
+                            <select required className="px-5 cursor-pointer w-28 md:w-3/4 mt-1 h-10 border-b appearance-none border-black rounded-sm bg-[#D8D8D8] outline-none" name="category" id="">
                                 <option disabled selected>Select</option>
                                 <option value="Luxury">Luxury</option>
                                 <option value="Smartwatches">Smartwatches</option>

@@ -1,12 +1,12 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { RxCross2 } from "react-icons/rx";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import useRole from "../../hooks/useRole";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Loading from "../Loading/Loading";
+import { FaTrash } from "react-icons/fa";
+import { IoTrashBinSharp } from "react-icons/io5";
 
 const AllUsers = () => {
 
@@ -57,7 +57,7 @@ const AllUsers = () => {
         <div className="min-h-screen w-full">
 
             <div>
-                <h1 className="text-4xl font-lexend text-center py-10 ">Manage Users</h1>
+                <h1 className="text-2xl md:text-4xl font-lexend text-center py-10 ">Manage Users</h1>
 
                 <div className=" max-w-[1000px] mx-auto">
                     <table className=" w-full">
@@ -100,13 +100,13 @@ const AllUsers = () => {
                                         <button
                                             disabled={role === null || myRole !== 'admin'}
                                             onClick={() => handleUpdate(user)}
-                                            className="font-lexend disabled:cursor-not-allowed mx-auto block">
+                                            className="font-lexend disabled:cursor-not-allowed mr-5 md:mr-0 mx-auto block">
                                             Update
                                         </button>
                                     </td>
 
                                     <td className="text-center py-4 text-2xl hidden md:block">
-                                        <button><RxCross2 /></button>
+                                        <button><IoTrashBinSharp className="text-xl" /></button>
                                     </td>
                                 </tr>
                             ))}

@@ -27,7 +27,7 @@ const CloseModal = ({ uxModal, setUxModal }) => {
 
                                 <p className='text-center my-5'>Do You Want To Continue ?</p>
 
-                                <div className='flex justify-evenly'>
+                                <div className='flex justify-evenly gap-4'>
                                     <Link to={'/products'}>
                                         <WhiteFillupBtn text={'Buy More '} />
                                     </Link>

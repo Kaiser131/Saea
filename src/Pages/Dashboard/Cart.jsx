@@ -72,7 +72,7 @@ const Cart = () => {
 
                     {/* heading div */}
                     <div>
-                        <div className="flex px-5 justify-between py-5 mx-10 my-5 text-black border-b border-black md:px-10">
+                        <div className="flex mx-10 justify-between py-5  my-5 text-black border-b border-black md:px-10">
                             <h1 className="font-lexend text-xl md:text-3xl font-bold">Shopping Cart</h1>
                             <p className="font-lexend text-xs md:text-base">{data.length} Items</p>
                         </div>
