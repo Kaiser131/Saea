@@ -125,6 +125,7 @@ const NavBar = () => {
                                 </div>
 
                                 <Link className="nav-hover-btn md:hidden" to='/dashboard'>Menu</Link>
+                                <Link className="nav-hover-btn md:hidden" to='/products'>Product</Link>
 
                                 {/* cart button */}
                                 {user ?
