@@ -13,7 +13,7 @@ const Home = () => {
         return <Loading></Loading>;
     }
     return (
-        <div>
+        <div className="relative">
             <Banner></Banner>
             <AboutUs></AboutUs>
             <NewArrive></NewArrive>
