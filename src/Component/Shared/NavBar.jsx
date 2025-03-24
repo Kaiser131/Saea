@@ -95,9 +95,9 @@ const NavBar = () => {
                                         }
 
                                     }}
-                                    className="font-kaushan text-white text-4xl">Siea</motion.button></Link>
+                                    className="font-kaushan text-white text-4xl">Saea</motion.button></Link>
                                 :
-                                <Link to='/'><motion.button className="font-kaushan text-white text-4xl">Siea</motion.button></Link>}
+                                <Link to='/'><motion.button className="font-kaushan text-white text-4xl">Saea</motion.button></Link>}
                     </div>
 
                     {

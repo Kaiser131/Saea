@@ -54,7 +54,7 @@ const Faq = () => {
             className="min-h-screen w-full bg-[#191B1D] relative flex items-center ">
 
 
-            <div className="w-1/2 hidden lg:block lg:border-r-[1px]">
+            <div className="w-1/2 hidden md:block lg:border-r-[1px]">
                 <motion.div
                     ref={faqRef}
                     animate={isInView ? 'visible' : 'hidden'}
@@ -120,10 +120,10 @@ const Faq = () => {
                         className={`md-lg-only lg:w-3/4 text-white collapse collapse-arrow ${activeIndex === idx ? 'collapse-open' : 'collapse-close'}`}
                     >
                         <input type="radio" name="my-accordion-2" />
-                        <div className="collapse-title text-3xl font-medium font-raleway">{data.qus}</div>
+                        <div className="collapse-title text-[clamp(20px,2vw,30px)] font-medium font-raleway">{data.qus}</div>
                         <div className="collapse px-4">
                             <hr />
-                            <p className="text-lg font-sirin pt-6 pb-16">{data.ans}</p>
+                            <p className="text-[clamp(12px,1vw,20px)] font-sirin pt-6 pb-16">{data.ans}</p>
                         </div>
                     </motion.div>
                 ))}

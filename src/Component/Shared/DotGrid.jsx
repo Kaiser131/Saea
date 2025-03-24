@@ -1,10 +1,31 @@
 import anime from "animejs";
+import { useEffect, useState } from "react";
 
 
-const GRID_WIDTH = 25;
-const GRID_HEIGHT = 20;
 
 const DotGrid = () => {
+
+    const [gridWidths, setGridWidth] = useState(25);
+    useEffect(() => {
+        const calculateGridWidth = () => {
+            const screenWidth = window.innerWidth;
+            const baseWidth = 1920;
+            const decreaseRate = Math.floor((baseWidth - screenWidth) / 80);
+
+            let newGridWidth = 25 - decreaseRate;
+            newGridWidth = Math.max(newGridWidth, 5);
+            setGridWidth(newGridWidth);
+        };
+
+        calculateGridWidth();
+        window.addEventListener("resize", calculateGridWidth);
+        return () => window.removeEventListener("resize", calculateGridWidth);
+    }, []);
+
+    const GRID_WIDTH = gridWidths;
+    const GRID_HEIGHT = 20;
+
+
     const handleDotClick = (e) => {
         anime({
             targets: ".dot-point",
@@ -20,7 +41,7 @@ const DotGrid = () => {
                 { value: 1, easing: "easeOutSine", duration: 250 },
                 { value: 0.5, easing: "easeInOutQuad", duration: 500 },
             ],
-            delay: anime.stagger(100, {
+            delay: anime.stagger(80, {
                 grid: [GRID_WIDTH, GRID_HEIGHT],
                 from: e.target.dataset.index,
             }),
